@@ -1,63 +1,70 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../context/auth.context";
+
+const API_URL = process.env.REACT_APP_API_URL;
 
 function LoginPage() {
-  const navigate = useNavigate();
+	const navigate = useNavigate();
+	const { storeToken, authenticateUser } = useContext(AuthContext);
 
-  const [inputs, setInputs] = useState({});
-  const [errorMessage, setErrorMessage] = useState(undefined);
+	const [inputs, setInputs] = useState({});
+	const [errorMessage, setErrorMessage] = useState(undefined);
 
-  const handleOnChange = (e) => {
-    setInputs((prevState) => ({
-      ...prevState,
-      [e.target.name]: e.target.value,
-    }));
-  };
+	const handleOnChange = (e) => {
+		setInputs((prevState) => ({
+			...prevState,
+			[e.target.name]: e.target.value,
+		}));
+	};
 
-  const handleLoginSubmit = (e) => {
-    e.preventDefault();
+	const handleLoginSubmit = (e) => {
+		e.preventDefault();
 
-    axios
-      .post(`${process.env.REACT_APP_API_URL}/auth/login`, inputs)
-      .then(() => {
-        navigate("/");
-      })
-      .catch((error) => {
-        const errorDescription = error.response.data.message;
-        setErrorMessage(errorDescription);
-      });
-  };
+		axios
+			.post(`${API_URL}/auth/login`, inputs)
+			.then((response) => {
+				storeToken(response.data.authToken);
 
-  return (
-    <div className="LoginPage">
-      <h1>Login</h1>
+				authenticateUser();
+				navigate("/");
+			})
+			.catch((error) => {
+				const errorDescription = error.response.data.message;
+				setErrorMessage(errorDescription);
+			});
+	};
 
-      <form onSubmit={handleLoginSubmit}>
-        <label>Email:</label>
-        <input
-          type="email"
-          name="email"
-          value={inputs.email || ""}
-          onChange={handleOnChange}
-        />
+	return (
+		<div className="LoginPage">
+			<h1>Login</h1>
 
-        <label>Password:</label>
-        <input
-          type="password"
-          name="password"
-          value={inputs.password || ""}
-          onChange={handleOnChange}
-        />
+			<form onSubmit={handleLoginSubmit}>
+				<label>Email:</label>
+				<input
+					type="email"
+					name="email"
+					value={inputs.email || ""}
+					onChange={handleOnChange}
+				/>
 
-        <button type="submit">Login</button>
-      </form>
-      {errorMessage && <p className="error-message">{errorMessage}</p>}
+				<label>Password:</label>
+				<input
+					type="password"
+					name="password"
+					value={inputs.password || ""}
+					onChange={handleOnChange}
+				/>
 
-      <p>Don't have an account yet?</p>
-      <Link to={"/signup"}> Sign Up</Link>
-    </div>
-  );
+				<button type="submit">Login</button>
+			</form>
+			{errorMessage && <p className="error-message">{errorMessage}</p>}
+
+			<p>Don't have an account yet?</p>
+			<Link to={"/signup"}> Sign Up</Link>
+		</div>
+	);
 }
 
 export default LoginPage;
