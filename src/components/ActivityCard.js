@@ -1,23 +1,7 @@
 import { Link } from "react-router-dom";
 
 // We are deconstructing props object directly in the parentheses of the function
-function ActivityCard(
-	props
-
-	//   {
-	// 	// user,
-	// 	name,
-	// 	_id,
-	// 	description,
-	// 	duration,
-	// 	images,
-	// 	availabe,
-	// 	date,
-	// 	price,
-	// 	user,
-	// }
-) {
-	console.log(props);
+function ActivityCard(props) {
 	return (
 		<div className="ActivityCard card">
 			<Link to={`/activities/${props._id}`}>
@@ -25,7 +9,7 @@ function ActivityCard(
 			</Link>
 			<p style={{ maxWidth: "400px" }}>{props.description} </p>
 			<p style={{ maxWidth: "400px" }}>{props.duration} </p>
-			<p style={{ maxWidth: "400px" }}>{props.images} </p>
+			<img src={props.images} alt="image" style={{ maxWidth: "400px" }} />
 			<p style={{ maxWidth: "400px" }}>{props.availabe} </p>
 			<p style={{ maxWidth: "400px" }}>{props.date} </p>
 			<p style={{ maxWidth: "400px" }}>{props.price} </p>

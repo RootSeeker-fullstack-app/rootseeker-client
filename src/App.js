@@ -6,6 +6,7 @@ import Navbar from "./components/Navbar";
 import HomePage from "./pages/HomePage";
 import ActivityListPage from "./pages/ActivityListPage";
 import ActivityDetailsPage from "./pages/ActivityDetailsPage";
+import AddActivityPage from "./pages/AddActivityPage";
 
 function App() {
 	return (
@@ -16,7 +17,11 @@ function App() {
 				<Route path="/signup" element={<SignupPage />} />
 				<Route path="/login" element={<LoginPage />} />
 				<Route path="/activities" element={<ActivityListPage />} />
-				<Route path="/activities/:activityId" element={<ActivityDetailsPage />} />
+				<Route
+					path="/activities/:activityId"
+					element={<ActivityDetailsPage />}
+				/>
+				<Route path="/activities/create" element={<AddActivityPage />} />
 			</Routes>
 		</div>
 	);
