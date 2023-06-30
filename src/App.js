@@ -5,6 +5,7 @@ import LoginPage from "./pages/LoginPage";
 import Navbar from "./components/Navbar";
 import HomePage from "./pages/HomePage";
 import ActivityListPage from "./pages/ActivityListPage";
+import ActivityDetailsPage from "./pages/ActivityDetailsPage";
 
 function App() {
 	return (
@@ -15,6 +16,7 @@ function App() {
 				<Route path="/signup" element={<SignupPage />} />
 				<Route path="/login" element={<LoginPage />} />
 				<Route path="/activities" element={<ActivityListPage />} />
+				<Route path="/activities/:activityId" element={<ActivityDetailsPage />} />
 			</Routes>
 		</div>
 	);
