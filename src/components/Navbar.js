@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../context/auth.context";
-import { Theme, Button } from "react-daisyui";
+import { Button } from "react-daisyui";
 
 function Navbar() {
 	const { isLoggedIn, user, logOutUser } = useContext(AuthContext);

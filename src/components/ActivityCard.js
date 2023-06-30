@@ -1,21 +1,31 @@
 import { Link } from "react-router-dom";
+import { Card, Button, Divider } from "react-daisyui";
 
-// We are deconstructing props object directly in the parentheses of the function
 function ActivityCard(props) {
 	return (
-		<div className="ActivityCard card">
-			<Link to={`/activities/${props._id}`}>
-				<h3>{props.name}</h3>
-			</Link>
-			<p style={{ maxWidth: "400px" }}>{props.description} </p>
-			<p style={{ maxWidth: "400px" }}>{props.duration} </p>
-			<img src={props.images} alt="image" style={{ maxWidth: "400px" }} />
-			<p style={{ maxWidth: "400px" }}>{props.availabe} </p>
-			<p style={{ maxWidth: "400px" }}>{props.date} </p>
-			<p style={{ maxWidth: "400px" }}>{props.price} </p>
-			<p style={{ maxWidth: "400px" }}>{props.user.username} </p>
-			<hr />
-		</div>
+		<container>
+			<Card className="w-2/5 my-2 bg-gray-200 shadow-xl ActivityCard card lg:card-side">
+				<Card.Image
+					src={props.images}
+					alt="image"
+					style={{ maxWidth: "300px" }}
+				/>
+				<Card.Body className="card-body">
+					<Link to={`/activities/${props._id}`}>
+						<Card.Title className="card-title">{props.name}</Card.Title>
+					</Link>
+					<p>{props.description} </p>
+					<p>{props.duration} </p>
+					<p>{props.availabe} </p>
+					<p>{props.date} </p>
+					<p>{props.price} </p>
+					<p>{props.user.username} </p>
+					<Card.Actions className="justify-end card-actions">
+						<Button className="btn btn-primary">Make a reservation</Button>
+					</Card.Actions>
+				</Card.Body>
+			</Card>
+		</container>
 	);
 }
 

@@ -8,24 +8,27 @@ import ActivityListPage from "./pages/ActivityListPage";
 import ActivityDetailsPage from "./pages/ActivityDetailsPage";
 import AddActivityPage from "./pages/AddActivityPage";
 import UserProfilePage from "./pages/UserProfilePage";
+import { Theme } from "react-daisyui";
 
 function App() {
 	return (
-		<div className="App">
-			<Navbar />
-			<Routes>
-				<Route path="/" element={<HomePage />} />
-				<Route path="/signup" element={<SignupPage />} />
-				<Route path="/login" element={<LoginPage />} />
-				<Route path="/activities" element={<ActivityListPage />} />
-				<Route
-					path="/activities/:activityId"
-					element={<ActivityDetailsPage />}
-				/>
-				<Route path="/activities/create" element={<AddActivityPage />} />
-				<Route path="/profile/:username" element={<UserProfilePage />} />
-			</Routes>
-		</div>
+		<Theme dataTheme="acid">
+			<div className="App">
+				<Navbar />
+				<Routes>
+					<Route path="/" element={<HomePage />} />
+					<Route path="/signup" element={<SignupPage />} />
+					<Route path="/login" element={<LoginPage />} />
+					<Route path="/activities" element={<ActivityListPage />} />
+					<Route
+						path="/activities/:activityId"
+						element={<ActivityDetailsPage />}
+					/>
+					<Route path="/activities/create" element={<AddActivityPage />} />
+					<Route path="/profile/:username" element={<UserProfilePage />} />
+				</Routes>
+			</div>
+		</Theme>
 	);
 }
 
