@@ -25,6 +25,8 @@ function App() {
 				<Route path="/activities/create" element={<AddActivityPage />} />
 				<Route path="/profile/:username" element={<UserProfilePage />} />
 			</Routes>
+
+			<h1 className="text-3xl font-bold underline">Hello world!</h1>
 		</div>
 	);
 }
