@@ -7,6 +7,7 @@ import HomePage from "./pages/HomePage";
 import ActivityListPage from "./pages/ActivityListPage";
 import ActivityDetailsPage from "./pages/ActivityDetailsPage";
 import AddActivityPage from "./pages/AddActivityPage";
+import UserProfilePage from "./pages/UserProfilePage";
 
 function App() {
 	return (
@@ -22,6 +23,7 @@ function App() {
 					element={<ActivityDetailsPage />}
 				/>
 				<Route path="/activities/create" element={<AddActivityPage />} />
+				<Route path="/profile/:username" element={<UserProfilePage />} />
 			</Routes>
 		</div>
 	);
