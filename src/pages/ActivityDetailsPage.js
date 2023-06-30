@@ -5,17 +5,20 @@ import MakeReservationForm from "../components/MakeReservationForm";
 
 function ActivityDetailsPage() {
   const [activity, setActivity] = useState(null);
-  const [showReservationForm, setShowReservationForm] = useState(false)
+  const [showReservationForm, setShowReservationForm] = useState(false);
 
   const { activityId } = useParams();
 
   const getActivity = () => {
     axios
       .get(`${process.env.REACT_APP_API_URL}/api/activities/${activityId}`)
-      .then((response) => setActivity(response.data))
+      .then((response) => {
+        setActivity(response.data)
+    })
       .catch((error) =>
         console.log("Error getting details from de API", error)
       );
+      
   };
 
   useEffect(() => {
@@ -29,7 +32,7 @@ function ActivityDetailsPage() {
     // } else {
     //     setShowReservationForm(true)
     // }
-  }
+  };
 
   return (
     <div>
@@ -45,14 +48,13 @@ function ActivityDetailsPage() {
           <h3>Date: {activity.date}</h3>
           <h3>Price: {activity.price}€</h3>
 
-        {showReservationForm && <MakeReservationForm />}
+          {showReservationForm && <MakeReservationForm {...activity}/>}
 
-        {showReservationForm ? (
+          {showReservationForm ? (
             <button onClick={reservationFormState}>Hide Form</button>
-           ) : (
-                <button onClick={reservationFormState}>Make reservation</button>
-            )
-        }
+          ) : (
+            <button onClick={reservationFormState}>Make reservation</button>
+          )}
         </div>
       )}
     </div>

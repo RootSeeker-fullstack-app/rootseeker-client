@@ -1,34 +1,51 @@
-import { useContext, useState } from "react";
-import { AuthContext } from "../context/auth.context";
+import axios from "axios";
+import { useState } from "react";
 
+function MakeReservationForm(props) {
+  const API_URL = process.env.REACT_APP_API_URL;
 
-function MakeReservationForm() {
-    const [ numberOfParticipants, setNumberOfParticipants] = useState('')
+  const [numberOfPeople, setNumberOfPeople] = useState("");
 
-    const { user } = useContext(AuthContext)
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
-    }
+    const storedToken = localStorage.getItem("authToken");
 
-    return (
-        <form onSubmit={handleSubmit}>
+    const newReservation = {
+      activity: props._id,
+      numberOfPeople,
+      price: props.price,
+    };
+
+    axios
+      .post(`${API_URL}/api/reservations`, newReservation, {
+        headers: { Authorization: `Bearer ${storedToken}` },
+      })
+      .then()
+      .catch((error) => console.log("Error booking reservation", error));
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
       <h1>Make a reservation</h1>
 
       <label>Number of participants:</label>
       <input
-        value={numberOfParticipants}
+        value={numberOfPeople}
         type="number"
-        name="name"
+        name="numberOfPeople"
         min={1}
         onChange={(e) => {
-          setNumberOfParticipants(e.target.value);
+          setNumberOfPeople(e.target.value);
         }}
         required={true}
       />
-      </form>
-    )
-
+      <p>Total Price: {numberOfPeople * props.price}€</p>
+      <button type="submit">submit</button>
+      <br />
+      <br />
+    </form>
+  );
 }
 
 export default MakeReservationForm;

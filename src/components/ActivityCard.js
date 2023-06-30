@@ -14,6 +14,7 @@ function ActivityCard(props) {
 			<p style={{ maxWidth: "400px" }}>{props.date} </p>
 			<p style={{ maxWidth: "400px" }}>{props.price} </p>
 			<p style={{ maxWidth: "400px" }}>{props.user.username} </p>
+			<hr />
 		</div>
 	);
 }
