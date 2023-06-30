@@ -1,16 +1,19 @@
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../context/auth.context";
+import { Theme, Button } from "react-daisyui";
 
 function Navbar() {
 	const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
 	return (
 		<nav>
 			<Link to="/">
-				<button>Home</button>
+				<Button color="primary" className="btn-xs">
+					home
+				</Button>
 			</Link>
 			<Link to="/activities">
-				<button>Activities</button>
+				<Button color="primary">Activities</Button>
 			</Link>
 			{isLoggedIn && (
 				<>
