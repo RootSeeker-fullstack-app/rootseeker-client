@@ -3,8 +3,8 @@ import { Card, Button, Divider } from "react-daisyui";
 
 function ActivityCard(props) {
 	return (
-		<container>
-			<Card className="w-2/5 my-2 bg-gray-200 shadow-xl ActivityCard card lg:card-side">
+		<>
+			<Card className="my-2 bg-gray-200 shadow-xl ActivityCard card lg:card-side">
 				<Card.Image
 					src={props.images}
 					alt="image"
@@ -17,15 +17,18 @@ function ActivityCard(props) {
 					<p>{props.description} </p>
 					<p>{props.duration} </p>
 					<p>{props.availabe} </p>
-					<p>{props.date} </p>
+					<p>{props.date.slice(0, 10)} </p>
 					<p>{props.price} </p>
 					<p>{props.user.username} </p>
-					<Card.Actions className="justify-end card-actions">
-						<Button className="btn btn-primary">Make a reservation</Button>
-					</Card.Actions>
+					<Link to={`/activities/${props._id}`}>
+						<Card.Actions className="justify-end card-actions">
+							<Button className="btn btn-primary">More details</Button>
+						</Card.Actions>
+					</Link>
 				</Card.Body>
 			</Card>
-		</container>
+			<Divider></Divider>
+		</>
 	);
 }
 

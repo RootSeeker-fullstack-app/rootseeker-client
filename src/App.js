@@ -2,7 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import SignupPage from "./pages/SignupPage";
 import LoginPage from "./pages/LoginPage";
-import Navbar from "./components/Navbar";
+import NavBarComponent from "./components/NavBarComponent";
 import HomePage from "./pages/HomePage";
 import ActivityListPage from "./pages/ActivityListPage";
 import ActivityDetailsPage from "./pages/ActivityDetailsPage";
@@ -12,9 +12,9 @@ import { Theme } from "react-daisyui";
 
 function App() {
 	return (
-		<Theme dataTheme="acid">
+		<Theme dataTheme="light">
 			<div className="App">
-				<Navbar />
+				<NavBarComponent />
 				<Routes>
 					<Route path="/" element={<HomePage />} />
 					<Route path="/signup" element={<SignupPage />} />
