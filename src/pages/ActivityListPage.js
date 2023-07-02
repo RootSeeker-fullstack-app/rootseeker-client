@@ -30,16 +30,20 @@ export default function ActivityListPage() {
 			<div className="flex flex-row ActivityListPage basis-1/2">
 				<div className="basis-1/3">this is the categories</div>
 				<div className="basis-2/3">
-					<div className="">
-						<Search />
+					<div>
+						<div className="">
+							<Search />
+						</div>
+						<div>
+							{!activities ? (
+								<p>loading...</p>
+							) : (
+								activities.map((activity) => (
+									<ActivityCard key={activity._id} {...activity} />
+								))
+							)}
+						</div>
 					</div>
-					{!activities ? (
-						<p>loading...</p>
-					) : (
-						activities.map((activity) => (
-							<ActivityCard key={activity._id} {...activity} />
-						))
-					)}
 				</div>
 			</div>
 			<div className="basis-1/4"></div>

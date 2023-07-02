@@ -4,10 +4,12 @@ import { Dropdown, Input, Button } from "react-daisyui";
 import { useNavigate } from "react-router-dom";
 
 function Search() {
-	const [items, setItems] = useState([]);
+	const [activities, setActivities] = useState([]);
+	const [users, setUsers] = useState([]);
 	const [value, setValue] = useState("");
 	const API_URL = process.env.REACT_APP_API_URL;
 	const navigate = useNavigate();
+
 	useEffect(() => {
 		getItemsFromApi();
 	}, []);
@@ -16,19 +18,15 @@ function Search() {
 		axios
 			.get(`${API_URL}/api/activities`)
 			.then((response) => {
-				setItems(response.data);
-
+				setActivities(response.data);
 				return axios.get(`${API_URL}/api/users`);
 			})
 			.then((response) => {
-				setItems((prevState) => [...prevState, ...response.data]);
-				console.log(items);
+				setUsers(response.data);
 			})
-			.catch((e) => console.log(e));
+			.catch((error) => console.log(error));
 	};
-
-	console.log(items);
-	const filteredItems = items.filter((item) => {
+	const filteredItems = [...activities, ...users].filter((item) => {
 		const searchTerm = value.toLowerCase();
 		const itemLow = (item.name || item.username)?.toLowerCase();
 		return (
@@ -42,16 +40,41 @@ function Search() {
 
 	const onSearch = (searchTerm) => {
 		setValue(searchTerm);
-		// navigate(`/${}`)
-		console.log("search", searchTerm);
+	};
+	const handleKeyDown = (e) => {
+		if (e.key === "Enter") {
+			const selectedItem =
+				activities.find((item) => item.name === value) ||
+				users.find((item) => item.username === value);
+
+			if (selectedItem) {
+				if (selectedItem.name) {
+					navigate(`/activities/${selectedItem._id}`);
+				} else if (selectedItem.username) {
+					navigate(`/profile/${selectedItem.username}`);
+				}
+			}
+		}
 	};
 
 	return (
 		<>
-			<label>Search</label>
-			<Input value={value} type="text" onChange={onChange} />
-			<Button onClick={() => onSearch(value)}>Search</Button>
-			<Dropdown className="flex flex-col">
+			<div className="flex flex-col">
+				<label className="text-left">Search</label>
+				<form>
+					<div className="flex flex-row">
+						<Input
+							bordered
+							className="mr-2 grow"
+							value={value}
+							type="text"
+							onChange={onChange}
+							onKeyDown={handleKeyDown}
+						/>
+					</div>
+				</form>
+			</div>
+			<Dropdown className="flex flex-col text-left list-none ">
 				{!filteredItems ? (
 					<p>loading...</p>
 				) : (
