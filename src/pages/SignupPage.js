@@ -1,32 +1,10 @@
 import { useState } from "react";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
+// import { Link, useNavigate } from "react-router-dom";
+import { Modal, Button, Input } from "react-daisyui";
 
-function SignupPage() {
-	// return (
-	// 	<div className="font-sans">
-	// 		<Modal {...args} open={visible}>
-	// 			<Button
-	// 				size="sm"
-	// 				shape="circle"
-	// 				className="absolute right-2 top-2"
-	// 				onClick={toggleVisible}
-	// 			>
-	// 				✕
-	// 			</Button>
-	// 			<Modal.Header className="font-bold">
-	// 				Congratulations random Interner user!
-	// 			</Modal.Header>
-
-	// 			<Modal.Body>
-	// 				You've been selected for a chance to get one year of subscription to
-	// 				use Wikipedia for free!
-	// 			</Modal.Body>
-	// 		</Modal>
-	// 	</div>
-	// );
-
-	const navigate = useNavigate();
+function SignupPage({ toggleIsSignupVisible, toggleIsLoginVisible }) {
+	// const navigate = useNavigate();
 
 	const [inputs, setInputs] = useState({});
 	const [errorMessage, setErrorMessage] = useState(undefined);
@@ -44,7 +22,9 @@ function SignupPage() {
 		axios
 			.post(`${process.env.REACT_APP_API_URL}/auth/signup`, inputs)
 			.then((response) => {
-				navigate("/login");
+				// navigate("/login");
+				toggleIsSignupVisible();
+				toggleIsLoginVisible();
 			})
 			.catch((error) => {
 				const errorDescription = error.response.data.message;
@@ -52,13 +32,27 @@ function SignupPage() {
 			});
 	};
 
-	return (
-		<div className="SignupPage">
-			<h1>Sign Up</h1>
+	const handleLoginClick = () => {
+		toggleIsSignupVisible();
+		toggleIsLoginVisible();
+	};
 
-			<form onSubmit={handleSignupSubmit}>
+	return (
+		<Modal className="SignupPage" onSubmit={handleSignupSubmit} open="visible">
+			<Modal.Header>Sign up now</Modal.Header>
+			<button
+				size="sm"
+				shape="circle"
+				className="absolute right-2 top-2"
+				onClick={toggleIsSignupVisible}
+			>
+				✕
+			</button>
+
+			<Modal.Body className="flex flex-col ">
 				<label>Email:</label>
-				<input
+				<Input
+					borderOffset="true"
 					type="email"
 					name="email"
 					value={inputs.email || ""}
@@ -67,7 +61,8 @@ function SignupPage() {
 				/>
 
 				<label>Password:</label>
-				<input
+				<Input
+					borderOffset="true"
 					type="password"
 					name="password"
 					value={inputs.password || ""}
@@ -76,8 +71,9 @@ function SignupPage() {
 				/>
 
 				<label>userName:</label>
-				<input
+				<Input
 					type="text"
+					borderOffset="true"
 					name="username"
 					value={inputs.username || ""}
 					onChange={handleOnChange}
@@ -85,31 +81,35 @@ function SignupPage() {
 				/>
 
 				<label>firstName:</label>
-				<input
+				<Input
 					type="text"
 					name="firstName"
+					borderOffset="true"
 					value={inputs.firstName || ""}
 					onChange={handleOnChange}
 					required={true}
 				/>
 
 				<label>lastName:</label>
-				<input
+				<Input
 					type="text"
 					name="lastName"
 					value={inputs.lastName || ""}
+					borderOffset="true"
 					onChange={handleOnChange}
 					required={true}
 				/>
 
-				<button type="submit">Sign Up</button>
-			</form>
+				<Button color="primary" className="mt-3" type="submit">
+					Sign Up
+				</Button>
 
-			{errorMessage && <p className="error-message">{errorMessage}</p>}
+				{errorMessage && <p className="error-message">{errorMessage}</p>}
+			</Modal.Body>
 
-			<p>Already have account?</p>
-			<Link to={"/login"}> Login</Link>
-		</div>
+			<p>Already have an account?</p>
+			<Button onClick={handleLoginClick}> Login</Button>
+		</Modal>
 	);
 }
 

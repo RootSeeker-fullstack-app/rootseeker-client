@@ -19,7 +19,6 @@ function AddProject(props) {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 
-		// Get the token from the localStorage
 		const storedToken = localStorage.getItem("authToken");
 		axios
 			.post(`${API_URL}/api/activities`, inputs, {
@@ -34,6 +33,7 @@ function AddProject(props) {
 			.catch((error) => {
 				const errorDescription = error.response.data.message;
 				setErrorMessage(errorDescription);
+				console.log(errorMessage);
 			});
 	};
 

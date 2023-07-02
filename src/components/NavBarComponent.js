@@ -10,14 +10,19 @@ import {
 	Badge,
 } from "react-daisyui";
 import SignupPage from "../pages/SignupPage";
+import LoginPage from "../pages/LoginPage";
 
 function NavBarComponent() {
-	const [visible, setVisible] = useState(false);
+	const [isSignupVisible, setIsSignupVisible] = useState(false);
+	const [isLoginVisible, setIsLoginVisible] = useState(false);
 
-	const toggleVisible = () => {
-		setVisible(!visible);
+	const toggleIsSignupVisible = () => {
+		setIsSignupVisible(!isSignupVisible);
 	};
 
+	const toggleIsLoginVisible = () => {
+		setIsLoginVisible(!isLoginVisible);
+	};
 	const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
 	return (
 		<div className="flex items-center justify-center w-full gap-2 p-4 pb-0 font-sans component-preview">
@@ -87,7 +92,7 @@ function NavBarComponent() {
 					{!isLoggedIn && (
 						<>
 							<Button
-								onClick={toggleVisible}
+								onClick={toggleIsSignupVisible}
 								color="ghost"
 								variant="outline"
 								className="btn-xs"
@@ -95,11 +100,15 @@ function NavBarComponent() {
 								Sign Up
 							</Button>
 
-							<Link to="/login">
-								<Button color="ghost" className="btn-xs">
+							<>
+								<Button
+									color="ghost"
+									className="btn-xs"
+									onClick={toggleIsLoginVisible}
+								>
 									Login
 								</Button>
-							</Link>
+							</>
 						</>
 					)}
 					<Dropdown vertical="end">
@@ -139,7 +148,18 @@ function NavBarComponent() {
 				</Navbar.End>
 			</Navbar>
 
-			{visible && <SignupPage />}
+			{isSignupVisible && (
+				<SignupPage
+					toggleIsSignupVisible={toggleIsSignupVisible}
+					toggleIsLoginVisible={toggleIsLoginVisible}
+				/>
+			)}
+			{isLoginVisible && (
+				<LoginPage
+					toggleIsLoginVisible={toggleIsLoginVisible}
+					toggleIsSignupVisible={toggleIsSignupVisible}
+				/>
+			)}
 		</div>
 	);
 }

@@ -1,11 +1,12 @@
 import { useState, useContext } from "react";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
+import { Modal, Button, Input } from "react-daisyui";
 
 const API_URL = process.env.REACT_APP_API_URL;
 
-function LoginPage() {
+function LoginPage({ toggleIsLoginVisible, toggleIsSignupVisible }) {
 	const navigate = useNavigate();
 	const { storeToken, authenticateUser } = useContext(AuthContext);
 
@@ -26,23 +27,37 @@ function LoginPage() {
 			.post(`${API_URL}/auth/login`, inputs)
 			.then((response) => {
 				storeToken(response.data.authToken);
-
 				authenticateUser();
 				navigate("/");
+				toggleIsLoginVisible();
 			})
 			.catch((error) => {
-				const errorDescription = error.response.data.message;
+				const errorDescription =
+					error.response?.data?.message || "An error occurred.";
 				setErrorMessage(errorDescription);
 			});
 	};
 
-	return (
-		<div className="LoginPage">
-			<h1>Login</h1>
+	const handleSignupClick = () => {
+		toggleIsLoginVisible();
+		toggleIsSignupVisible();
+	};
 
-			<form onSubmit={handleLoginSubmit}>
+	return (
+		<Modal className="LoginPage" onSubmit={handleLoginSubmit} open="visible">
+			<button
+				size="sm"
+				shape="circle"
+				className="absolute right-2 top-2"
+				onClick={toggleIsLoginVisible}
+			>
+				✕
+			</button>
+			<h1>Login</h1>
+			<Modal.Body className="flex flex-col mt-3">
 				<label>Email:</label>
-				<input
+				<Input
+					borderOffset={true}
 					type="email"
 					name="email"
 					value={inputs.email || ""}
@@ -50,20 +65,23 @@ function LoginPage() {
 				/>
 
 				<label>Password:</label>
-				<input
+				<Input
+					borderOffset={true}
 					type="password"
 					name="password"
 					value={inputs.password || ""}
 					onChange={handleOnChange}
 				/>
 
-				<button type="submit">Login</button>
-			</form>
+				<Button color="primary" type="submit" className="mt-3">
+					Login
+				</Button>
+			</Modal.Body>
 			{errorMessage && <p className="error-message">{errorMessage}</p>}
 
 			<p>Don't have an account yet?</p>
-			<Link to={"/signup"}> Sign Up</Link>
-		</div>
+			<Button onClick={handleSignupClick}>Sign Up</Button>
+		</Modal>
 	);
 }
 
