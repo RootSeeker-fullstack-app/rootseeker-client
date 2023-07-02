@@ -37,6 +37,12 @@ function SignupPage({ toggleIsSignupVisible, toggleIsLoginVisible }) {
 		toggleIsLoginVisible();
 	};
 
+	const handleKeyDown = (event) => {
+		if (event.key === "Enter") {
+			handleSignupSubmit(event);
+		}
+	};
+
 	return (
 		<Modal className="SignupPage" onSubmit={handleSignupSubmit} open="visible">
 			<Modal.Header>Sign up now</Modal.Header>
@@ -58,6 +64,7 @@ function SignupPage({ toggleIsSignupVisible, toggleIsLoginVisible }) {
 					value={inputs.email || ""}
 					onChange={handleOnChange}
 					required={true}
+					onKeyDown={handleKeyDown}
 				/>
 
 				<label>Password:</label>
@@ -68,6 +75,7 @@ function SignupPage({ toggleIsSignupVisible, toggleIsLoginVisible }) {
 					value={inputs.password || ""}
 					onChange={handleOnChange}
 					required={true}
+					onKeyDown={handleKeyDown}
 				/>
 
 				<label>userName:</label>
@@ -78,6 +86,7 @@ function SignupPage({ toggleIsSignupVisible, toggleIsLoginVisible }) {
 					value={inputs.username || ""}
 					onChange={handleOnChange}
 					required={true}
+					onKeyDown={handleKeyDown}
 				/>
 
 				<label>firstName:</label>
@@ -88,6 +97,7 @@ function SignupPage({ toggleIsSignupVisible, toggleIsLoginVisible }) {
 					value={inputs.firstName || ""}
 					onChange={handleOnChange}
 					required={true}
+					onKeyDown={handleKeyDown}
 				/>
 
 				<label>lastName:</label>
@@ -98,6 +108,7 @@ function SignupPage({ toggleIsSignupVisible, toggleIsLoginVisible }) {
 					borderOffset="true"
 					onChange={handleOnChange}
 					required={true}
+					onKeyDown={handleKeyDown}
 				/>
 
 				<Button color="primary" className="mt-3" type="submit">

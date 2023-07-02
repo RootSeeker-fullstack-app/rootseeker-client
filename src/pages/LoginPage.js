@@ -37,6 +37,11 @@ function LoginPage({ toggleIsLoginVisible, toggleIsSignupVisible }) {
 				setErrorMessage(errorDescription);
 			});
 	};
+	const handleKeyDown = (event) => {
+		if (event.key === "Enter") {
+			handleLoginSubmit(event);
+		}
+	};
 
 	const handleSignupClick = () => {
 		toggleIsLoginVisible();
@@ -62,6 +67,7 @@ function LoginPage({ toggleIsLoginVisible, toggleIsSignupVisible }) {
 					name="email"
 					value={inputs.email || ""}
 					onChange={handleOnChange}
+					onKeyDown={handleKeyDown}
 				/>
 
 				<label>Password:</label>
@@ -71,11 +77,12 @@ function LoginPage({ toggleIsLoginVisible, toggleIsSignupVisible }) {
 					name="password"
 					value={inputs.password || ""}
 					onChange={handleOnChange}
+					onKeyDown={handleKeyDown}
 				/>
 
-				<Button color="primary" type="submit" className="mt-3">
+				<button color="primary" type="submit" className="mt-3">
 					Login
-				</Button>
+				</button>
 			</Modal.Body>
 			{errorMessage && <p className="error-message">{errorMessage}</p>}
 
