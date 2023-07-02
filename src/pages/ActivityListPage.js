@@ -4,6 +4,7 @@ import ActivityCard from "../components/ActivityCard";
 // import AddActivityPage from "./AddActivityPage";
 // import { Link } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
+import Search from "../components/SearchBarComp";
 
 export default function ActivityListPage() {
 	const [activities, setActivities] = useState(null);
@@ -29,7 +30,9 @@ export default function ActivityListPage() {
 			<div className="flex flex-row ActivityListPage basis-1/2">
 				<div className="basis-1/3">this is the categories</div>
 				<div className="basis-2/3">
-					<div className="">this is the search bar</div>
+					<div className="">
+						<Search />
+					</div>
 					{!activities ? (
 						<p>loading...</p>
 					) : (
