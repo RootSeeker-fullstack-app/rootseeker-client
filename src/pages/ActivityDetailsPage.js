@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import MakeReservationForm from "../components/MakeReservationForm";
 import { AuthContext } from "../context/auth.context";
 import { Button } from "react-daisyui";
@@ -13,9 +13,12 @@ function ActivityDetailsPage() {
 
   const { user } = useContext(AuthContext);
 
+  const navigate = useNavigate();
+  const API_URL = process.env.REACT_APP_API_URL;
+
   const getActivity = () => {
     axios
-      .get(`${process.env.REACT_APP_API_URL}/api/activities/${activityId}`)
+      .get(`${API_URL}/api/activities/${activityId}`)
       .then((response) => {
         setActivity(response.data);
       })
@@ -27,6 +30,17 @@ function ActivityDetailsPage() {
   useEffect(() => {
     getActivity();
   }, []);
+
+  const deleteActivity = () => {
+    const storedToken = localStorage.getItem("authToken");
+
+    axios
+      .delete(`${API_URL}/api/activities/${activityId}`, {
+        headers: { Authorization: `Bearer ${storedToken}` },
+      })
+      .then(() => navigate(`/profile/${user.username}`))
+      .catch((error) => console.log("Error deleting activity from API", error));
+  };
 
   const reservationFormState = () => {
     setShowReservationForm(!showReservationForm);
@@ -57,28 +71,43 @@ function ActivityDetailsPage() {
                 <Link to={`/profile/${activity.user.username}`}>
                   <h3>Host: {activity.user.username} </h3>
                 </Link>
-                {user.username !== activity.user.username ? (
-                  <>
-                    {showReservationForm && (
-                      <MakeReservationForm {...activity} />
-                    )}
-
-                    {showReservationForm ? (
-                      <Button className="btn btn-primary" onClick={reservationFormState}>Hide Form</Button>
-                    ) : (
-                      <Button className="btn btn-primary" onClick={reservationFormState}>
-                        Make reservation
-                      </Button>
-                    )}
-                  </>
+                {user === null ? (
+                  <p>login to book this activity</p>
                 ) : (
                   <>
-                    <Button className="btn btn-primary">
-                      Edit
-                    </Button>
-                    <Button className="btn btn-error">
-                      Delete
-                    </Button>
+                    {user.username !== activity.user.username ? (
+                      <>
+                        {showReservationForm && (
+                          <MakeReservationForm {...activity} />
+                        )}
+
+                        {showReservationForm ? (
+                          <Button
+                            className="btn btn-primary"
+                            onClick={reservationFormState}
+                          >
+                            Hide Form
+                          </Button>
+                        ) : (
+                          <Button
+                            className="btn btn-primary"
+                            onClick={reservationFormState}
+                          >
+                            Make reservation
+                          </Button>
+                        )}
+                      </>
+                    ) : (
+                      <>
+                        <Button className="btn btn-primary">Edit</Button>
+                        <Button
+                          className="btn btn-error"
+                          onClick={deleteActivity}
+                        >
+                          Delete
+                        </Button>
+                      </>
+                    )}
                   </>
                 )}
               </div>
