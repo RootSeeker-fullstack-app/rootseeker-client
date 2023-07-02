@@ -2,34 +2,36 @@ import { Link } from "react-router-dom";
 import { Card, Button, Divider } from "react-daisyui";
 
 function ActivityCard(props) {
-	return (
-		<>
-			<Card className="my-2 bg-gray-200 shadow-xl ActivityCard card lg:card-side">
-				<Card.Image
-					src={props.images}
-					alt="image"
-					style={{ maxWidth: "300px" }}
-				/>
-				<Card.Body className="card-body">
-					<Link to={`/activities/${props._id}`}>
-						<Card.Title className="card-title">{props.name}</Card.Title>
-					</Link>
-					<p>{props.description} </p>
-					<p>{props.duration} </p>
-					<p>{props.availabe} </p>
-					<p>{props.date.slice(0, 10)} </p>
-					<p>{props.price} </p>
-					<p>{props.user.username} </p>
-					<Link to={`/activities/${props._id}`}>
-						<Card.Actions className="justify-end card-actions">
-							<Button className="btn btn-primary">More details</Button>
-						</Card.Actions>
-					</Link>
-				</Card.Body>
-			</Card>
-			<Divider></Divider>
-		</>
-	);
+  return (
+    <>
+      <Card className="my-2 bg-gray-200 shadow-xl ActivityCard card lg:card-side">
+        <Card.Image
+          src={props.images}
+          alt="image"
+          style={{ maxWidth: "300px" }}
+        />
+        <Card.Body className="card-body">
+          <Link to={`/activities/${props._id}`}>
+            <Card.Title className="card-title">{props.name}</Card.Title>
+          </Link>
+          <p>{props.description} </p>
+          <p>{props.duration} </p>
+          <p>{props.availabe} </p>
+          <p>{props.date.slice(0, 10)} </p>
+          <p>{props.price} </p>
+          <Link to={`/profile/${props.user.username}`}>
+            <p>{props.user.username} </p>
+          </Link>
+          <Link to={`/activities/${props._id}`}>
+            <Card.Actions className="justify-end card-actions">
+              <Button className="btn btn-primary">More details</Button>
+            </Card.Actions>
+          </Link>
+        </Card.Body>
+      </Card>
+      <Divider></Divider>
+    </>
+  );
 }
 
 export default ActivityCard;
