@@ -17,17 +17,22 @@ function Search() {
 			.get(`${API_URL}/api/activities`)
 			.then((response) => {
 				setItems(response.data);
+
+				return axios.get(`${API_URL}/api/users`);
+			})
+			.then((response) => {
+				setItems((prevState) => [...prevState, ...response.data]);
+				console.log(items);
 			})
 			.catch((e) => console.log(e));
 	};
 
+	console.log(items);
 	const filteredItems = items.filter((item) => {
 		const searchTerm = value.toLowerCase();
-		const itemLow = item.name.toLowerCase();
+		const itemLow = (item.name || item.username)?.toLowerCase();
 		return (
-			searchTerm &&
-			itemLow.includes(searchTerm.toLowerCase()) &&
-			itemLow !== searchTerm
+			searchTerm && itemLow?.includes(searchTerm) && itemLow !== searchTerm
 		);
 	});
 
@@ -37,7 +42,7 @@ function Search() {
 
 	const onSearch = (searchTerm) => {
 		setValue(searchTerm);
-		// navigate(`/activities/${}`)
+		// navigate(`/${}`)
 		console.log("search", searchTerm);
 	};
 
@@ -52,8 +57,14 @@ function Search() {
 				) : (
 					filteredItems.map((item) => {
 						return (
-							<Dropdown.Item onClick={() => onSearch(item.name)} key={item._id}>
-								{item.name}
+							<Dropdown.Item
+								onClick={() =>
+									onSearch(item.name && navigate(`/activities/${item._id}`)) ||
+									(item.username && navigate(`/profile/${item.username}`))
+								}
+								key={item._id}
+							>
+								{item.name || item.username}
 							</Dropdown.Item>
 						);
 					})
