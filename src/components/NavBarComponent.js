@@ -175,10 +175,10 @@ function NavBarComponent() {
                     </Card.Actions>
                   </Card.Body>
                   <li>
-                    <a>Sidebar Item 1</a>
+                    <Link>Sidebar Item 1</Link>
                   </li>
                   <li>
-                    <a>Sidebar Item 2</a>
+                    <Link>Sidebar Item 2</Link>
                   </li>
                 </ul>
               </div>

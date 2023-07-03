@@ -66,9 +66,10 @@ function ActivityDetailsPage() {
                 <p>{activity.description}</p>
               </div>
               <div className="col-span-2 bg-gray-400">
+                <h3>Description: {activity.description}</h3>
                 <h3>Duration: {activity.duration}min</h3>
 
-                <h3>Available: {activity.available}</h3>
+                {/* <h3>Available: {activity.available}</h3> */}
                 <h3>Date: {activity.date.slice(0, 10)}</h3>
                 <h3>Price: {activity.price}€</h3>
                 {user ? (
@@ -108,7 +109,7 @@ function ActivityDetailsPage() {
                       </>
                     ) : (
                       <>
-                        <Button className="btn btn-primary">Edit</Button>
+                        <Link to={`/activities/edit/${activityId}`} className="btn btn-primary">Edit</Link>
                         <Button
                           className="btn btn-error"
                           onClick={deleteActivity}
