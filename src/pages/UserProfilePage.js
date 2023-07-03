@@ -1,24 +1,19 @@
 import { useState, useEffect, useContext } from "react";
 import axios from "axios";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import ActivityCard from "../components/ActivityCard";
 import { Card, Button } from "react-daisyui";
 import { AuthContext } from "../context/auth.context";
 
 export default function UserProfilePage() {
   const { username } = useParams();
-  const { user, isLoggedIn } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   const [activities, setActivities] = useState(null);
   const [currentUser, setCurrentUser] = useState(null);
-  const navigate = useNavigate();
   const API_URL = process.env.REACT_APP_API_URL;
 
   const getActivitiesOfUser = () => {
     let activitiesArr;
-
-    if (!isLoggedIn) {
-      navigate("/login");
-    }
 
     axios
       .get(`${API_URL}/api/activities`)

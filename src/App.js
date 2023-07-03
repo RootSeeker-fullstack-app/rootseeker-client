@@ -8,6 +8,8 @@ import ActivityListPage from "./pages/ActivityListPage";
 import ActivityDetailsPage from "./pages/ActivityDetailsPage";
 import AddActivityPage from "./pages/AddActivityPage";
 import UserProfilePage from "./pages/UserProfilePage";
+import IsPrivate from "./components/IsPrivate";
+import IsAnon from "./components/IsAnon";
 import { Theme } from "react-daisyui";
 
 function App() {
@@ -17,15 +19,15 @@ function App() {
 				<NavBarComponent />
 				<Routes>
 					<Route path="/" element={<HomePage />} />
-					<Route path="/signup" element={<SignupPage />} />
-					<Route path="/login" element={<LoginPage />} />
-					<Route path="/activities" element={<ActivityListPage />} />
+					<Route path="/signup" element={<IsAnon><SignupPage /></IsAnon>} />
+					<Route path="/login" element={<IsAnon><LoginPage /></IsAnon>} />
+					<Route path="/activities" element={<IsAnon><ActivityListPage /></IsAnon>} />
 					<Route
 						path="/activities/:activityId"
-						element={<ActivityDetailsPage />}
+						element={<IsAnon><ActivityDetailsPage /></IsAnon>}
 					/>
-					<Route path="/activities/create" element={<AddActivityPage />} />
-					<Route path="/profile/:username" element={<UserProfilePage />} />
+					<Route path="/activities/create" element={<IsPrivate><AddActivityPage /></IsPrivate>} />
+					<Route path="/profile/:username" element={<IsPrivate><UserProfilePage /></IsPrivate>} />
 				</Routes>
 			</div>
 		</Theme>

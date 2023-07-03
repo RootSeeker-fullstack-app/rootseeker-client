@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom";
 import { Card, Button, Divider } from "react-daisyui";
+import { useContext } from "react";
+import { AuthContext } from "../context/auth.context";
 
 function ActivityCard(props) {
+  const { user } = useContext(AuthContext);
   return (
     <>
       <Card className="my-2 bg-gray-200 shadow-xl ActivityCard card lg:card-side">
@@ -19,9 +22,13 @@ function ActivityCard(props) {
           <p>{props.availabe} </p>
           <p>{props.date.slice(0, 10)} </p>
           <p>{props.price} </p>
-          <Link to={`/profile/${props.user.username}`}>
+          {user ? (
+            <Link to={`/profile/${props.user.username}`}>
+              <p>{props.user.username} </p>
+            </Link>
+          ) : (
             <p>{props.user.username} </p>
-          </Link>
+          )}
           <Link to={`/activities/${props._id}`}>
             <Card.Actions className="justify-end card-actions">
               <Button className="btn btn-primary">More details</Button>

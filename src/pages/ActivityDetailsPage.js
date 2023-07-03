@@ -5,6 +5,8 @@ import MakeReservationForm from "../components/MakeReservationForm";
 import { AuthContext } from "../context/auth.context";
 import { Button } from "react-daisyui";
 
+
+
 function ActivityDetailsPage() {
   const [activity, setActivity] = useState(null);
   const [showReservationForm, setShowReservationForm] = useState(false);
@@ -29,6 +31,7 @@ function ActivityDetailsPage() {
 
   useEffect(() => {
     getActivity();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const deleteActivity = () => {
@@ -68,11 +71,17 @@ function ActivityDetailsPage() {
                 <h3>Available: {activity.available}</h3>
                 <h3>Date: {activity.date.slice(0, 10)}</h3>
                 <h3>Price: {activity.price}€</h3>
-                <Link to={`/profile/${activity.user.username}`}>
+                {user ? (
+                  <Link to={`/profile/${activity.user.username}`}>
+                    <h3>Host: {activity.user.username} </h3>
+                  </Link>
+                ) : (
                   <h3>Host: {activity.user.username} </h3>
-                </Link>
+                )}
                 {user === null ? (
-                  <p>login to book this activity</p>
+                  <p>
+                    <Link to={"/login"}>login</Link> to book this activity
+                  </p>
                 ) : (
                   <>
                     {user.username !== activity.user.username ? (
