@@ -26,7 +26,7 @@ function NavBarComponent() {
 	const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
 	return (
 		<div className="flex items-center justify-center w-full gap-2 p-4 pb-0 font-sans component-preview">
-			<Navbar className="shadow-xl navbar bg-base-100 rounded-box">
+			<Navbar className="z-20 shadow-xl navbar bg-base-100 rounded-box">
 				<Navbar.Start>
 					<h3>Logo</h3>
 					<h3>
@@ -51,10 +51,10 @@ function NavBarComponent() {
 					)}
 				</Navbar.Start>
 				<Navbar.End>
-					<div className="flex-none">
+					<div className="z-30 flex-none">
 						{isLoggedIn && (
 							<>
-								<Dropdown vertical="end">
+								<Dropdown className="z-30" vertical="end">
 									<strong>{user && user.username}</strong>
 									<Button color="primary" className="avatar" shape="circle">
 										<div className="w-10 rounded-full">
@@ -105,9 +105,9 @@ function NavBarComponent() {
 						</>
 					)}
 
-          {/* {THIS IS GOING TO BE A COMPONENT} */}
-          <Dropdown vertical="end">
-            {/* <Button tabIndex={0} color="ghost" shape="circle">
+					{/* {THIS IS GOING TO BE A COMPONENT} */}
+					<Dropdown vertical="end">
+						{/* <Button tabIndex={0} color="ghost" shape="circle">
 							<Indicator item={<Badge size="sm">8</Badge>}>
 								<svg
 									xmlns="http://www.w3.org/2000/svg"
@@ -126,59 +126,59 @@ function NavBarComponent() {
 							</Indicator>
 						</Button> */}
 
-            <div tabIndex={0} className="drawer drawer-end">
-              <input
-                id="my-drawer-4"
-                type="checkbox"
-                className="drawer-toggle"
-              />
-              <div className="drawer-content">
-                {/* Page content here */}
-                <label
-                  htmlFor="my-drawer-4"
-                  shape="circle"
-                  className="p-5 m-3 drawer-button"
-                >
-                  <Indicator item={<Badge size="sm">8</Badge>}>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="w-5 h-5"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
-                      />
-                    </svg>
-                  </Indicator>
-                </label>
-              </div>
-              <div className="drawer-side">
-                <label htmlFor="my-drawer-4" className="drawer-overlay"></label>
-                <ul className="h-full p-4 menu w-80 bg-base-200 text-base-content">
-                  {/* Sidebar content here */}
-                  <Card.Body className="card-body">
-                    <span className="text-lg font-bold">8 Items</span>
-                    <span className="text-info">Subtotal: $999</span>
-                    <Card.Actions>
-                      <Button color="primary" fullWidth>
-                        View cart
-                      </Button>
-                    </Card.Actions>
-                  </Card.Body>
-                  <li>
-                    <Link>Sidebar Item 1</Link>
-                  </li>
-                  <li>
-                    <Link>Sidebar Item 2</Link>
-                  </li>
-                </ul>
-              </div>
-            </div>
+						<div tabIndex={0} className="drawer drawer-end">
+							<input
+								id="my-drawer-4"
+								type="checkbox"
+								className="drawer-toggle"
+							/>
+							<div className="drawer-content">
+								{/* Page content here */}
+								<label
+									htmlFor="my-drawer-4"
+									shape="circle"
+									className="p-5 m-3 drawer-button"
+								>
+									<Indicator item={<Badge size="sm">8</Badge>}>
+										<svg
+											xmlns="http://www.w3.org/2000/svg"
+											className="w-5 h-5"
+											fill="none"
+											viewBox="0 0 24 24"
+											stroke="currentColor"
+										>
+											<path
+												strokeLinecap="round"
+												strokeLinejoin="round"
+												strokeWidth={2}
+												d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+											/>
+										</svg>
+									</Indicator>
+								</label>
+							</div>
+							<div className="z-40 drawer-side">
+								<label htmlFor="my-drawer-4" className="drawer-overlay"></label>
+								<ul className="h-full p-4 menu w-80 bg-base-200 text-base-content">
+									{/* Sidebar content here */}
+									<Card.Body className="card-body">
+										<span className="text-lg font-bold">8 Items</span>
+										<span className="text-info">Subtotal: $999</span>
+										<Card.Actions>
+											<Button color="primary" fullWidth>
+												View cart
+											</Button>
+										</Card.Actions>
+									</Card.Body>
+									<li>
+										<Link>Sidebar Item 1</Link>
+									</li>
+									<li>
+										<Link>Sidebar Item 2</Link>
+									</li>
+								</ul>
+							</div>
+						</div>
 
 						{/* <Dropdown.Menu
 							// tabIndex={0}
