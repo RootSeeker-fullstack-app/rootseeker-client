@@ -2,112 +2,108 @@ import { Link } from "react-router-dom";
 import { useContext, useState } from "react";
 import { AuthContext } from "../context/auth.context";
 import {
-  Button,
-  Dropdown,
-  Navbar,
-  Indicator,
-  Card,
-  Badge,
+	Button,
+	Dropdown,
+	Navbar,
+	Indicator,
+	Card,
+	Badge,
 } from "react-daisyui";
 import SignupPage from "../pages/SignupPage";
 import LoginPage from "../pages/LoginPage";
 
 function NavBarComponent() {
-  const [isSignupVisible, setIsSignupVisible] = useState(false);
-  const [isLoginVisible, setIsLoginVisible] = useState(false);
+	const [isSignupVisible, setIsSignupVisible] = useState(false);
+	const [isLoginVisible, setIsLoginVisible] = useState(false);
 
-  const toggleIsSignupVisible = () => {
-    setIsSignupVisible(!isSignupVisible);
-  };
+	const toggleIsSignupVisible = () => {
+		setIsSignupVisible(!isSignupVisible);
+	};
 
-  const toggleIsLoginVisible = () => {
-    setIsLoginVisible(!isLoginVisible);
-  };
-  const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
-  return (
-    <div className="flex items-center justify-center w-full gap-2 p-4 pb-0 font-sans component-preview">
-      <Navbar className="shadow-xl navbar bg-base-100 rounded-box">
-        <Navbar.Start>
-          <h3>Logo</h3>
-          <h3>
-            <strong>RootSeeker</strong>
-          </h3>
-          <Link to="/">
-            <Button color="ghost" className="btn-xs">
-              home
-            </Button>
-          </Link>
-          <Link to="/activities">
-            <Button color="ghost" className="btn-xs">
-              Activities
-            </Button>
-          </Link>
-          {isLoggedIn && (
-            <Link to={"/activities/create"}>
-              <Button color="ghost" className="btn-xs">
-                Become a Host
-              </Button>
-            </Link>
-          )}
-        </Navbar.Start>
-        <Navbar.End>
-          <div className="flex-none">
-            {isLoggedIn && (
-              <>
-                <Dropdown vertical="end">
-                  <strong>{user && user.username}</strong>
-                  <Button color="primary" className="avatar" shape="circle">
-                    <div className="w-10 rounded-full">
-                      <img
-                        src={
-                          user.imgProfile
-                            ? user.imgProfile
-                            : "https://api.lorem.space/image/face?hash=33791"
-                        }
-                        alt="imageasd"
-                      />
-                    </div>
-                  </Button>
-                  <Dropdown.Menu className="mt-3 w-52 menu-compact right-8">
-                    <li>
-                      <Link to={`/profile/${user.username}`}>Profile</Link>
-                    </li>
-                    <Dropdown.Item>Settings</Dropdown.Item>
-                    <Dropdown.Item>
-                      <Link
-                        onClick={logOutUser}
-                      >
-                        Logout
-                      </Link>
-                    </Dropdown.Item>
-                  </Dropdown.Menu>
-                </Dropdown>
-              </>
-            )}
-          </div>
+	const toggleIsLoginVisible = () => {
+		setIsLoginVisible(!isLoginVisible);
+	};
+	const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
+	return (
+		<div className="flex items-center justify-center w-full gap-2 p-4 pb-0 font-sans component-preview">
+			<Navbar className="shadow-xl navbar bg-base-100 rounded-box">
+				<Navbar.Start>
+					<h3>Logo</h3>
+					<h3>
+						<strong>RootSeeker</strong>
+					</h3>
+					<Link to="/">
+						<Button color="ghost" className="btn-xs">
+							home
+						</Button>
+					</Link>
+					<Link to="/activities">
+						<Button color="ghost" className="btn-xs">
+							Activities
+						</Button>
+					</Link>
+					{isLoggedIn && (
+						<Link to={"/activities/create"}>
+							<Button color="ghost" className="btn-xs">
+								Become a Host
+							</Button>
+						</Link>
+					)}
+				</Navbar.Start>
+				<Navbar.End>
+					<div className="flex-none">
+						{isLoggedIn && (
+							<>
+								<Dropdown vertical="end">
+									<strong>{user && user.username}</strong>
+									<Button color="primary" className="avatar" shape="circle">
+										<div className="w-10 rounded-full">
+											<img
+												src={
+													user.imgProfile
+														? user.imgProfile
+														: "https://api.lorem.space/image/face?hash=33791"
+												}
+												alt="imageasd"
+											/>
+										</div>
+									</Button>
+									<Dropdown.Menu className="mt-3 w-52 menu-compact right-8">
+										<li>
+											<Link to={`/profile/${user.username}`}>Profile</Link>
+										</li>
+										<Dropdown.Item>Settings</Dropdown.Item>
+										<Dropdown.Item>
+											<Link onClick={logOutUser}>Logout</Link>
+										</Dropdown.Item>
+									</Dropdown.Menu>
+								</Dropdown>
+							</>
+						)}
+					</div>
 
-          {!isLoggedIn && (
-            <>
-              <Button
-                onClick={toggleIsSignupVisible}
-                color="ghost"
-                variant="outline"
-                className="btn-xs"
-              >
-                Sign Up
-              </Button>
+					{!isLoggedIn && (
+						<>
+							<Button
+								onClick={toggleIsSignupVisible}
+								color="ghost"
+								variant="outline"
+								className="btn-xs"
+							>
+								Sign Up
+							</Button>
 
-              <>
-                <Button
-                  color="ghost"
-                  className="btn-xs"
-                  onClick={toggleIsLoginVisible}
-                >
-                  Login
-                </Button>
-              </>
-            </>
-          )}
+							<>
+								<Button
+									color="ghost"
+									className="btn-xs"
+									onClick={toggleIsLoginVisible}
+								>
+									Login
+								</Button>
+							</>
+						</>
+					)}
 
           {/* {THIS IS GOING TO BE A COMPONENT} */}
           <Dropdown vertical="end">
@@ -184,7 +180,7 @@ function NavBarComponent() {
               </div>
             </div>
 
-            {/* <Dropdown.Menu
+						{/* <Dropdown.Menu
 							// tabIndex={0}
 							className="mt-3 card card-compact right-2 w-52 bg-base-100 !p-0"
 						>
@@ -198,25 +194,25 @@ function NavBarComponent() {
 								</Card.Actions>
 							</Card.Body>
 						</Dropdown.Menu> */}
-          </Dropdown>
-          {/* {THIS IS GOING TO BE A COMPONENT} */}
-        </Navbar.End>
-      </Navbar>
+					</Dropdown>
+					{/* {THIS IS GOING TO BE A COMPONENT} */}
+				</Navbar.End>
+			</Navbar>
 
-      {isSignupVisible && (
-        <SignupPage
-          toggleIsSignupVisible={toggleIsSignupVisible}
-          toggleIsLoginVisible={toggleIsLoginVisible}
-        />
-      )}
-      {isLoginVisible && (
-        <LoginPage
-          toggleIsLoginVisible={toggleIsLoginVisible}
-          toggleIsSignupVisible={toggleIsSignupVisible}
-        />
-      )}
-    </div>
-  );
+			{isSignupVisible && (
+				<SignupPage
+					toggleIsSignupVisible={toggleIsSignupVisible}
+					toggleIsLoginVisible={toggleIsLoginVisible}
+				/>
+			)}
+			{isLoginVisible && (
+				<LoginPage
+					toggleIsLoginVisible={toggleIsLoginVisible}
+					toggleIsSignupVisible={toggleIsSignupVisible}
+				/>
+			)}
+		</div>
+	);
 }
 
 export default NavBarComponent;
