@@ -23,16 +23,12 @@ function NavBarComponent() {
   const [isLoginVisible, setIsLoginVisible] = useState(false);
   const [reservations, setReservations] = useState(null);
 
-  let message;
+  
 
   const getReservations = () => {
     axios
       .get(`${API_URL}/api/reservations`)
       .then((reservationsArr) => {
-        //console.log(reservationsArr);
-        if (!user) {
-          message = <p>somthing</p>;
-        }
         const filteredArr = reservationsArr.data.filter((reservation) => {
           return reservation.user._id === user._id;
         });
