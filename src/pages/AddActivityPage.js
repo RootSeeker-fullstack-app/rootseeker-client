@@ -3,6 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Input, Button, Textarea } from "react-daisyui";
 import { ToastContainer, toast } from "react-toastify";
+import FooterCard from "../components/FooterCard";
 import "react-toastify/dist/ReactToastify.css";
 
 const API_URL = process.env.REACT_APP_API_URL;
@@ -41,7 +42,9 @@ function AddActivityPage(props) {
 			const storedToken = localStorage.getItem("authToken");
 			const newActivity = {
 				...inputs,
-				images: imageUrl, // Assign imageUrl as a string
+				images:
+					imageUrl ||
+					"https://res.cloudinary.com/dcslof4ax/image/upload/v1686843478/user-folder/p6sarfts5pwi4hygwgtm.jpg", // Assign imageUrl as a string
 			};
 
 			axios
@@ -66,33 +69,34 @@ function AddActivityPage(props) {
                     Check it on cart`);
 
 	return (
-		<div className="flex flex-row">
-			<div className="basis-1/4"></div>
-			<div className="flex flex-row my-10 basis-1/2">
-				<div className="AddActivity basis-1/2">
-					<h3>Add Activity this is the left component</h3>
+		<div>
+			<div className="flex flex-row my-32">
+				<div className="basis-1/4"></div>
+				<div className="flex flex-row my-10 basis-1/2">
+					<div className="AddActivity basis-1/2">
+						<h3>Add Activity this is the left component</h3>
 
-					<form className="flex flex-col" onSubmit={handleSubmit}>
-						<label>Title:</label>
-						<Input
-							borderOffset="true"
-							type="text"
-							name="name"
-							value={inputs.name || ""}
-							onChange={handleOnChange}
-							required={true}
-						/>
+						<form className="flex flex-col" onSubmit={handleSubmit}>
+							<label>Title:</label>
+							<Input
+								borderOffset="true"
+								type="text"
+								name="name"
+								value={inputs.name || ""}
+								onChange={handleOnChange}
+								required={true}
+							/>
 
-						<label>Description:</label>
-						<Textarea
-							borderOffset="true"
-							type="text"
-							name="description"
-							value={inputs.description || ""}
-							onChange={handleOnChange}
-						/>
+							<label>Description:</label>
+							<Textarea
+								borderOffset="true"
+								type="text"
+								name="description"
+								value={inputs.description || ""}
+								onChange={handleOnChange}
+							/>
 
-						{/* <Form className="w-64 p-4 rounded-lg shadow bg-base-200">
+							{/* <Form className="w-64 p-4 rounded-lg shadow bg-base-200">
               <Form.Label title="Available">
                 <Checkbox
                   type="boolean"
@@ -102,54 +106,56 @@ function AddActivityPage(props) {
               </Form.Label>
             </Form> */}
 
-						<label>Duration:</label>
-						<Input
-							borderOffset="true"
-							type="number"
-							name="duration"
-							value={inputs.duration || ""}
-							onChange={handleOnChange}
-							required={true}
-						/>
+							<label>Duration:</label>
+							<Input
+								borderOffset="true"
+								type="number"
+								name="duration"
+								value={inputs.duration || ""}
+								onChange={handleOnChange}
+								required={true}
+							/>
 
-						<label>Price per adult:</label>
-						<Input
-							borderOffset="true"
-							type="number"
-							name="price"
-							value={inputs.price || ""}
-							onChange={handleOnChange}
-							required={true}
-						/>
+							<label>Price per adult:</label>
+							<Input
+								borderOffset="true"
+								type="number"
+								name="price"
+								value={inputs.price || ""}
+								onChange={handleOnChange}
+								required={true}
+							/>
 
-						<label>Date:</label>
-						<Input
-							borderOffset="true"
-							type="date"
-							name="date"
-							value={inputs.date || ""}
-							onChange={handleOnChange}
-							required={true}
-						/>
+							<label>Date:</label>
+							<Input
+								borderOffset="true"
+								type="date"
+								name="date"
+								value={inputs.date || ""}
+								onChange={handleOnChange}
+								required={true}
+							/>
 
-						<label>Image:</label>
-						<Input
-							borderOffset="true"
-							type="file"
-							// name="images"
-							// value={inputs.images || ""}
-							onChange={(e) => handleFileUpload(e)}
-						/>
+							<label>Image:</label>
+							<Input
+								borderOffset="true"
+								type="file"
+								// name="images"
+								// value={inputs.images || ""}
+								onChange={(e) => handleFileUpload(e)}
+							/>
 
-						<Button onClick={notify} type="submit" className="mt-5">
-							Submit
-						</Button>
-						<ToastContainer position="top-center" autoClose={2000} />
-					</form>
+							<Button onClick={notify} type="submit" className="mt-5">
+								Submit
+							</Button>
+							<ToastContainer position="top-center" autoClose={2000} />
+						</form>
+					</div>
+					<div className="basis-1/2">this is the right component</div>
 				</div>
-				<div className="basis-1/2">this is the right component</div>
+				<div className="basis-1/4"></div>
 			</div>
-			<div className="basis-1/4"></div>
+			<FooterCard />
 		</div>
 	);
 }

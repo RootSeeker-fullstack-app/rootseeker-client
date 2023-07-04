@@ -1,16 +1,16 @@
-// import { Parallax, ParallaxLayer } from "@react-spring/parallax";
+import { Parallax, ParallaxLayer } from "@react-spring/parallax";
 
-// import SearchBarComp from "../components/SearchBarComp";
-// import WelcomeCard from "../components/WelcomeCard";
-// import StickyCard from "../components/StickyCard";
-// import ChooseCard from "../components/ChooseCard";
-// import FooterCard from "../components/FooterCard";
+import SearchBarComp from "../components/SearchBarComp";
+import WelcomeCard from "../components/WelcomeCard";
+import StickyCard from "../components/StickyCard";
+import ChooseCard from "../components/ChooseCard";
+import FooterCard from "../components/FooterCard";
 
 export default function HomePage() {
-	// const alignCenter = { display: "flex", alignItems: "center" };
+	const alignCenter = { display: "flex", alignItems: "center" };
 	return (
 		<div className="flex justify-center">
-			{/* <div className="justify-center w-1/2 ">
+			<div className="z-40 justify-center w-1/2 ">
 				<SearchBarComp />
 			</div>
 			<div />
@@ -21,8 +21,6 @@ export default function HomePage() {
 					style={{
 						...alignCenter,
 						justifyContent: "center",
-						top: "100px",
-						left: "0",
 					}}
 					speed={0.5}
 				>
@@ -60,14 +58,16 @@ export default function HomePage() {
 					</div>
 				</ParallaxLayer>
 				<ParallaxLayer
-					sticky={{ start: 3.5, end: 5 }}
+					offset={4}
 					style={{ ...alignCenter, justifyContent: "center" }}
 				>
-					<div className="w-11/12 h-72">
-						<FooterCard />
+					<div class="min-h-screen flex flex-col">
+						<div class="flex-grow"></div>
+
+						<FooterCard className="flex flex-col max-w-screen flex-end" />
 					</div>
 				</ParallaxLayer>
-			</Parallax> */}
+			</Parallax>
 		</div>
 	);
 }

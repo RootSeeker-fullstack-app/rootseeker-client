@@ -35,7 +35,9 @@ function SignupPage({ toggleIsSignupVisible, toggleIsLoginVisible }) {
 
 		const newProfile = {
 			...inputs,
-			imgProfile: imageUrl, // Assign imageUrl as a string
+			imgProfile:
+				imageUrl ||
+				"https://res.cloudinary.com/dcslof4ax/image/upload/v1686592088/user-folder/wxjsptzx8l5kplnay3wn.png", // Assign imageUrl as a string
 		};
 
 		axios

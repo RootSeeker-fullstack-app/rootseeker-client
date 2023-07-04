@@ -94,7 +94,7 @@ function EditProfile({ toggleIsEditVisible }) {
 							borderOffset="true"
 							value={inputs.firstName || ""}
 							onChange={handleOnChange}
-							required={true}
+							// required={true}
 							onKeyDown={handleKeyDown}
 						/>
 
@@ -105,7 +105,7 @@ function EditProfile({ toggleIsEditVisible }) {
 							value={inputs.lastName || ""}
 							borderOffset="true"
 							onChange={handleOnChange}
-							required={true}
+							// required={true}
 							onKeyDown={handleKeyDown}
 						/>
 

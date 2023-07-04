@@ -28,7 +28,7 @@ function NavBarComponent() {
 			.get(`${API_URL}/api/reservations`)
 			.then((reservationsArr) => {
 				const filteredArr = reservationsArr.data.filter((reservation) => {
-					return reservation.user._id === user._id;
+					return reservation.user?._id === user?._id;
 				});
 				setReservations(filteredArr);
 				console.log("this is the one");
@@ -51,8 +51,8 @@ function NavBarComponent() {
 	};
 
 	return (
-		<div className="flex items-center justify-center w-full gap-2 p-4 pb-0 font-sans component-preview">
-			<Navbar className="shadow-xl navbar bg-base-100 rounded-box">
+		<div className="z-40 flex items-center justify-center w-full gap-2 p-4 pb-0 font-sans component-preview">
+			<Navbar className="z-40 shadow-xl navbar bg-base-100 rounded-box">
 				<Navbar.Start>
 					<h3>Logo</h3>
 					<h3>
@@ -77,7 +77,7 @@ function NavBarComponent() {
 					)}
 				</Navbar.Start>
 				<Navbar.End>
-					<div className="flex-none">
+					<div className="z-40 flex-none">
 						{isLoggedIn && (
 							<>
 								<Dropdown vertical="end">
@@ -94,7 +94,7 @@ function NavBarComponent() {
 											/>
 										</div>
 									</Button>
-									<Dropdown.Menu className="mt-3 w-52 menu-compact right-8">
+									<Dropdown.Menu className="z-40 mt-3 w-52 menu-compact right-8">
 										<li>
 											<Link to={`/profile/${user.username}`}>Profile</Link>
 										</li>
