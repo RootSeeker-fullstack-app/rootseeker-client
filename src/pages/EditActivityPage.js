@@ -5,13 +5,26 @@ import { Input, Button, Textarea } from "react-daisyui";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const API_URL = process.env.REACT_APP_API_URL;
-
 function EditActivityPage() {
+	const API_URL = process.env.REACT_APP_API_URL;
 	const { activityId } = useParams();
 	const navigate = useNavigate();
+	const [imageUrl, setImageUrl] = useState("");
 
 	const [inputs, setInputs] = useState(null);
+
+	const handleFileUpload = (e) => {
+		const uploadData = new FormData();
+
+		uploadData.append("imageUrl", e.target.files[0]);
+
+		axios
+			.post(`${API_URL}/api/upload`, uploadData)
+			.then((response) => {
+				setImageUrl(response.data.fileUrl);
+			})
+			.catch((err) => console.log("Error while uploading the file: ", err));
+	};
 
 	const handleOnChange = (e) => {
 		setInputs((prevState) => ({
@@ -33,11 +46,16 @@ function EditActivityPage() {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
+
+		const newActivity = {
+			...inputs,
+			images: imageUrl,
+		};
 		setTimeout(() => {
 			const storedToken = localStorage.getItem("authToken");
 
 			axios
-				.put(`${API_URL}/api/activities/${activityId}`, inputs, {
+				.put(`${API_URL}/api/activities/${activityId}`, newActivity, {
 					headers: { Authorization: `Bearer ${storedToken}` },
 				})
 				.then(() => navigate(`/activities/${activityId}`))
@@ -113,10 +131,8 @@ function EditActivityPage() {
 								<label>Image:</label>
 								<Input
 									borderOffset="true"
-									type="text"
-									name="image"
-									value={inputs.images || ""}
-									onChange={handleOnChange}
+									type="file"
+									onChange={handleFileUpload}
 								/>
 
 								<Button type="submit" onClick={notifyUpdate} className="mt-5">

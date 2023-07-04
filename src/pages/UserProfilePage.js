@@ -43,7 +43,7 @@ export default function UserProfilePage() {
 	useEffect(() => {
 		getActivitiesOfUser();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [username]);
+	}, [username, user]);
 
 	return (
 		<div>

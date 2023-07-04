@@ -5,8 +5,9 @@ import { Modal, Button, Input } from "react-daisyui";
 
 function SignupPage({ toggleIsSignupVisible, toggleIsLoginVisible }) {
 	// const navigate = useNavigate();
-
+	const API_URL = process.env.REACT_APP_API_URL;
 	const [inputs, setInputs] = useState({});
+	const [imageUrl, setImageUrl] = useState("");
 	const [errorMessage, setErrorMessage] = useState(undefined);
 
 	const handleOnChange = (e) => {
@@ -16,11 +17,29 @@ function SignupPage({ toggleIsSignupVisible, toggleIsLoginVisible }) {
 		}));
 	};
 
+	const handleFileUpload = (e) => {
+		const uploadData = new FormData();
+
+		uploadData.append("imageUrl", e.target.files[0]);
+
+		axios
+			.post(`${API_URL}/api/upload`, uploadData)
+			.then((response) => {
+				setImageUrl(response.data.fileUrl);
+			})
+			.catch((err) => console.log("Error while uploading the file: ", err));
+	};
+
 	const handleSignupSubmit = (e) => {
 		e.preventDefault();
 
+		const newProfile = {
+			...inputs,
+			imgProfile: imageUrl, // Assign imageUrl as a string
+		};
+
 		axios
-			.post(`${process.env.REACT_APP_API_URL}/auth/signup`, inputs)
+			.post(`${API_URL}/auth/signup`, newProfile)
 			.then((response) => {
 				// navigate("/login");
 				toggleIsSignupVisible();
@@ -109,6 +128,15 @@ function SignupPage({ toggleIsSignupVisible, toggleIsLoginVisible }) {
 					onChange={handleOnChange}
 					required={true}
 					onKeyDown={handleKeyDown}
+				/>
+
+				<label>Image:</label>
+				<Input
+					type="file"
+					borderOffset="true"
+					onChange={handleFileUpload}
+					// required={true}
+					// onKeyDown={handleKeyDown}
 				/>
 
 				<Button color="primary" className="mt-3" type="submit">

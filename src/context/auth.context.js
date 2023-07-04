@@ -7,7 +7,6 @@ const API_URL = process.env.REACT_APP_API_URL;
 const AuthContext = React.createContext();
 
 function AuthProviderWrapper(props) {
-
 	const navigate = useNavigate();
 
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -30,7 +29,7 @@ function AuthProviderWrapper(props) {
 				})
 				.then((response) => {
 					// If the server verifies that the JWT token is valid
-					const user = response.data;
+					const user = response.data || response.data.payload;
 
 					// Update state variables
 					setIsLoggedIn(true);
@@ -59,7 +58,7 @@ function AuthProviderWrapper(props) {
 	const logOutUser = () => {
 		removeToken();
 		authenticateUser();
-		navigate("/")
+		navigate("/");
 	};
 
 	useEffect(() => {
@@ -72,6 +71,7 @@ function AuthProviderWrapper(props) {
 				isLoggedIn,
 				isLoading,
 				user,
+				setUser,
 				storeToken,
 				authenticateUser,
 				logOutUser,

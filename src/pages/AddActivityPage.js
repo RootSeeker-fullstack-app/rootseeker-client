@@ -9,6 +9,8 @@ const API_URL = process.env.REACT_APP_API_URL;
 
 function AddActivityPage(props) {
 	const [inputs, setInputs] = useState({});
+	const [imageUrl, setImageUrl] = useState("");
+
 	const [errorMessage, setErrorMessage] = useState(undefined);
 	const navigate = useNavigate();
 
@@ -20,16 +22,33 @@ function AddActivityPage(props) {
 		console.log(inputs.available);
 	};
 
+	const handleFileUpload = (e) => {
+		const uploadData = new FormData();
+
+		uploadData.append("imageUrl", e.target.files[0]);
+
+		axios
+			.post(`${API_URL}/api/upload`, uploadData)
+			.then((response) => {
+				setImageUrl(response.data.fileUrl);
+			})
+			.catch((err) => console.log("Error while uploading the file: ", err));
+	};
+
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		setTimeout(() => {
 			const storedToken = localStorage.getItem("authToken");
+			const newActivity = {
+				...inputs,
+				images: imageUrl, // Assign imageUrl as a string
+			};
+
 			axios
-				.post(`${API_URL}/api/activities`, inputs, {
+				.post(`${API_URL}/api/activities`, newActivity, {
 					headers: { Authorization: `Bearer ${storedToken}` },
 				})
 				.then((response) => {
-					console.log(inputs);
 					// Reset the state
 					setInputs("");
 					navigate("/activities");
@@ -116,10 +135,10 @@ function AddActivityPage(props) {
 						<label>Image:</label>
 						<Input
 							borderOffset="true"
-							type="text"
-							name="image"
-							value={inputs.image || ""}
-							onChange={handleOnChange}
+							type="file"
+							// name="images"
+							// value={inputs.images || ""}
+							onChange={(e) => handleFileUpload(e)}
 						/>
 
 						<Button onClick={notify} type="submit" className="mt-5">
