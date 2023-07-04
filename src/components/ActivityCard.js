@@ -17,17 +17,18 @@ function ActivityCard(props) {
           <Link to={`/activities/${props._id}`}>
             <Card.Title className="card-title">{props.name}</Card.Title>
           </Link>
-          <p>{props.description} </p>
-          <p>{props.duration} </p>
-          <p>{props.availabe} </p>
-          <p>{props.date.slice(0, 10)} </p>
-          <p>{props.price} </p>
+          <p>Description: {props.description} </p>
+          <p>Duration: {props.duration}min </p>
+          <p>Available: {props.availabe} </p>
+          <p>Activity date: {props.date.slice(0, 10)} </p>
+          <p>Price per adult: {props.price}€ </p>
+          <p>Max. Participants: {props.maxParticipants} </p>
           {user ? (
             <Link to={`/profile/${props.user.username}`}>
-              <p>{props.user.username} </p>
+              <p>Host: {props.user.username} </p>
             </Link>
           ) : (
-            <p>{props.user.username} </p>
+            <p>Host: {props.user.username} </p>
           )}
           <Link to={`/activities/${props._id}`}>
             <Card.Actions className="justify-end card-actions">

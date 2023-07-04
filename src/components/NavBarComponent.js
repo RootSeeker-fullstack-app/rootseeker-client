@@ -33,16 +33,16 @@ function NavBarComponent() {
           return reservation.user?._id === user?._id;
         });
         setReservations(filteredArr);
-        console.log("this is the one");
+        
       })
       .catch((error) =>
         console.log("Error getting reservations from API", error)
       );
   };
-  console.log(reservations);
+  
   useEffect(() => {
     getReservations();
-   
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 
   const toggleIsSignupVisible = () => {
