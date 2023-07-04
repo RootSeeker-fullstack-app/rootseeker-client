@@ -16,72 +16,72 @@ import LoginP from "./pages/LoginP";
 import SignupP from "./pages/SignupP";
 
 function App() {
-	return (
-		<Theme dataTheme="light">
-			<div className="App">
-				<NavBarComponent />
-				<Routes>
-					<Route path="/" element={<HomePage />} />
-					<Route
-						path="/signup"
-						element={
-							<IsAnon>
-								<SignupP />
-							</IsAnon>
-						}
-					/>
-					<Route
-						path="/login"
-						element={
-							<IsAnon>
-								<LoginP />
-							</IsAnon>
-						}
-					/>
-					<Route
-						path="/activities"
-						element={
-							<IsAnon>
-								<ActivityListPage />
-							</IsAnon>
-						}
-					/>
-					<Route
-						path="/activities/edit/:activityId"
-						element={
-							<IsPrivate>
-								<EditActivityPage />
-							</IsPrivate>
-						}
-					/>
-					<Route
-						path="/activities/:activityId"
-						element={
-							<IsAnon>
-								<ActivityDetailsPage />
-							</IsAnon>
-						}
-					/>
-					<Route
-						path="/activities/create"
-						element={
-							<IsPrivate>
-								<AddActivityPage />
-							</IsPrivate>
-						}
-					/>
-					<Route
-						path="/profile/:username"
-						element={
-							<IsPrivate>
-								<UserProfilePage />
-							</IsPrivate>
-						}
-					/>
-				</Routes>
-			</div>
-		</Theme>
-	);
+  return (
+    <Theme dataTheme="light">
+      <div className="App">
+        <NavBarComponent />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route
+            path="/signup"
+            element={
+              <IsAnon>
+                <SignupP />
+              </IsAnon>
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              <IsAnon>
+                <LoginP />
+              </IsAnon>
+            }
+          />
+          <Route
+            path="/activities"
+            element={
+              <IsAnon>
+                <ActivityListPage />
+              </IsAnon>
+            }
+          />
+          <Route
+            path="/activities/edit/:activityId"
+            element={
+              <IsPrivate>
+                <EditActivityPage />
+              </IsPrivate>
+            }
+          />
+          <Route
+            path="/activities/:activityId"
+            element={
+              <IsAnon>
+                <ActivityDetailsPage />
+              </IsAnon>
+            }
+          />
+          <Route
+            path="/activities/create"
+            element={
+              <IsPrivate>
+                <AddActivityPage />
+              </IsPrivate>
+            }
+          />
+          <Route
+            path="/profile/:username"
+            element={
+              <IsPrivate>
+                <UserProfilePage />
+              </IsPrivate>
+            }
+          />
+        </Routes>
+      </div>
+    </Theme>
+  );
 }
 
 export default App;
