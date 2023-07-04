@@ -1,6 +1,5 @@
 import { Footer } from "react-daisyui";
 import { Link } from "react-router-dom";
-import { LogoGithub, LogoLinkedin } from "react-ionicons";
 
 export default function FooterCard() {
 	return (
@@ -36,11 +35,11 @@ export default function FooterCard() {
 					Fernando Ramos
 				</a>
 				<a href="https://github.com/fndoRamos">
-					<LogoLinkedin color={"#FFF"} height="20px" width="20px" />
+					<ion-icon name="logo-linkedin"></ion-icon>
 					github.com/fndoRamos
 				</a>
 				<a href="https://github.com/fndoRamos">
-					<LogoGithub color={"#FFF"} height="20px" width="20px" />
+					<ion-icon name="logo-github"></ion-icon>
 					github.com/fndoRamos
 				</a>
 			</div>
@@ -56,11 +55,11 @@ export default function FooterCard() {
 					href="https://www.linkedin.com/in/gregory-tildis-junior-react/"
 					className="link link-hover"
 				>
-					<LogoLinkedin color={"#FFF"} height="20px" width="20px" />
+					<ion-icon name="logo-linkedin"></ion-icon>
 					https://www.linkedin.com/in/gregory-tildis-junior-react/
 				</a>
 				<a href="https://github.com/gtildis" className="link link-hover">
-					<LogoGithub color={"#FFF"} height="20px" width="20px" />
+					<ion-icon name="logo-github"></ion-icon>
 					github.com/gtildis
 				</a>
 			</div>

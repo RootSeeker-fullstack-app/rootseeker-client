@@ -9,6 +9,13 @@ function EditActivityPage() {
 	const API_URL = process.env.REACT_APP_API_URL;
 	const { activityId } = useParams();
 	const navigate = useNavigate();
+
+	const [showAddImage, setShowAddImage] = useState(false);
+
+	const toggleImage = () => {
+		setShowAddImage(!showAddImage);
+	};
+
 	const [imageUrl, setImageUrl] = useState("");
 
 	const [inputs, setInputs] = useState(null);
@@ -49,8 +56,12 @@ function EditActivityPage() {
 
 		const newActivity = {
 			...inputs,
-			images: imageUrl,
 		};
+
+		if (imageUrl) {
+			newActivity.images = imageUrl;
+		}
+
 		setTimeout(() => {
 			const storedToken = localStorage.getItem("authToken");
 
@@ -64,6 +75,41 @@ function EditActivityPage() {
 				);
 		}, 3000);
 	};
+
+	const handleAddImage = (e) => {
+		e.preventDefault();
+		notifyUpdate();
+		const storedToken = localStorage.getItem("authToken");
+		setTimeout(() => {
+			axios
+				.get(`${API_URL}/api/activities/${activityId}`, {
+					headers: { Authorization: `Bearer ${storedToken}` },
+				})
+				.then((response) => {
+					const activity = response.data;
+					const newImages = activity.images || []; // Retrieve existing images or initialize an empty array
+
+					if (imageUrl) {
+						newImages.push(imageUrl); // Push the new image URL to the array
+					}
+
+					const updatedActivity = {
+						...activity,
+						images: newImages,
+					};
+
+					axios
+						.put(`${API_URL}/api/activities/${activityId}`, updatedActivity, {
+							headers: { Authorization: `Bearer ${storedToken}` },
+						})
+						.then(() => navigate(`/activities/edit/${activityId}`))
+						.catch((error) =>
+							console.log("Error updating activity from API", error)
+						);
+				});
+		}, 3000);
+	};
+
 	const notifyUpdate = () =>
 		toast.success(`You updated successfully your activity`);
 
@@ -135,11 +181,24 @@ function EditActivityPage() {
 									onChange={handleFileUpload}
 								/>
 
-								<Button type="submit" onClick={notifyUpdate} className="mt-5">
+								<Button onClick={notifyUpdate} className="mt-5">
 									Submit
 								</Button>
 								<ToastContainer position="top-center" autoClose={2000} />
 							</form>
+
+							<Button onClick={toggleImage}>Add more photos</Button>
+							{showAddImage && (
+								<div>
+									<label>Another image:</label>
+									<Input
+										borderOffset="true"
+										type="file"
+										onChange={handleFileUpload}
+									/>
+									<Button onClick={handleAddImage}>Submit new photo</Button>
+								</div>
+							)}
 						</div>
 						<div className="basis-1/2">this is the right component</div>
 					</div>

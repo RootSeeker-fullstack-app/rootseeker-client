@@ -10,7 +10,7 @@ function ActivityCard(props) {
 		<>
 			<Card className="my-2 bg-gray-200 shadow-xl ActivityCard card lg:card-side">
 				<Card.Image
-					src={props.images}
+					src={props.images[0]}
 					alt="image"
 					style={{ maxWidth: "300px" }}
 				/>

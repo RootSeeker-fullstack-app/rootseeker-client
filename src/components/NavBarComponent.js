@@ -82,7 +82,11 @@ function NavBarComponent() {
 							<>
 								<Dropdown vertical="end">
 									<strong>{user && user.username}</strong>
-									<Button color="primary" className="avatar" shape="circle">
+									<Button
+										color="primary"
+										className="avatar bg-cyan-50"
+										shape="circle"
+									>
 										<div className="w-10 rounded-full">
 											<img
 												src={
@@ -133,7 +137,7 @@ function NavBarComponent() {
 
 					{/* {THIS IS GOING TO BE A COMPONENT} */}
 					<Dropdown vertical="end">
-						<div tabIndex={0} className="drawer drawer-end">
+						<div tabIndex={0} className="z-40 drawer drawer-end">
 							<input
 								id="my-drawer-4"
 								type="checkbox"
@@ -146,7 +150,13 @@ function NavBarComponent() {
 									shape="circle"
 									className="p-5 m-3 drawer-button"
 								>
-									<Indicator item={<Badge size="sm">8</Badge>}>
+									<Indicator
+										item={
+											<Badge className="z-30" size="sm">
+												{reservations?.length}
+											</Badge>
+										}
+									>
 										<svg
 											xmlns="http://www.w3.org/2000/svg"
 											className="w-5 h-5"
