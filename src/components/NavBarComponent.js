@@ -28,7 +28,7 @@ function NavBarComponent() {
 			.get(`${API_URL}/api/reservations`)
 			.then((reservationsArr) => {
 				const filteredArr = reservationsArr.data.filter((reservation) => {
-					return reservation.user?._id === user?._id;
+					return reservation.user._id === user._id;
 				});
 				setReservations(filteredArr);
 				console.log("this is the one");
