@@ -91,58 +91,90 @@ function ActivityDetailsPage() {
                           <MakeReservationForm {...activity} />
                         )}
 
-                        {showReservationForm ? (
-                          <Button
-                            className="btn btn-primary"
-                            onClick={reservationFormState}
-                          >
-                            Hide Form
-                          </Button>
-                        ) : (
-                          <Button
-                            className="btn btn-primary"
-                            onClick={reservationFormState}
-                          >
-                            Make reservation
-                          </Button>
-                        )}
-                      </>
-                    ) : (
-                      <>
-                        <Link
-                          to={`/activities/edit/${activityId}`}
-                          className="btn btn-primary"
-                        >
-                          Edit
-                        </Link>
-                        <Button
-                          className="btn btn-error"
-                          onClick={() => {
-                            notify();
-                            setTimeout(deleteActivity, 3000);
-                          }}
-                        >
-                          Delete
-                        </Button>
-                        <ToastContainer
-                          position="top-center"
-                          autoClose={2000}
-                        />
-                      </>
-                    )}
-                  </>
-                )}
-              </div>
-              <div className="col-span-3 bg-gray-400">
-                <img src={activity.images} alt="imageName" />
-              </div>
-            </div>
-          </div>
-          <div className="basis-1/5"></div>
-        </div>
-      )}
-    </div>
-  );
+												{showReservationForm ? (
+													<Button
+														className="btn btn-primary"
+														onClick={reservationFormState}
+													>
+														Hide Form
+													</Button>
+												) : (
+													<Button
+														className="btn btn-primary"
+														onClick={reservationFormState}
+													>
+														Make reservation
+													</Button>
+												)}
+											</>
+										) : (
+											<>
+												<Link
+													to={`/activities/edit/${activityId}`}
+													className="btn btn-primary"
+												>
+													Edit
+												</Link>
+												<Button
+													className="btn btn-error"
+													onClick={() => {
+														notify();
+														setTimeout(deleteActivity, 3000);
+													}}
+												>
+													Delete
+												</Button>
+												<ToastContainer
+													position="top-center"
+													autoClose={2000}
+												/>
+											</>
+										)}
+									</>
+								)}
+							</div>
+							<div className="col-span-3 bg-gray-400">
+								<div className="w-full carousel">
+									{activity.images.map((image, index) => (
+										<div
+											id={`slide${index}`}
+											className="relative w-full carousel-item"
+											key={index}
+										>
+											<img
+												src={image}
+												className="w-full"
+												alt={`Slide ${index}`}
+											/>
+											<div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
+												{index > 0 && (
+													<a
+														href={`#slide${index - 1}`}
+														className="btn btn-circle"
+													>
+														❮
+													</a>
+												)}
+												{index < activity.images.length - 1 && (
+													<a
+														href={`#slide${index + 1}`}
+														className="btn btn-circle"
+													>
+														❯
+													</a>
+												)}
+											</div>
+										</div>
+									))}
+								</div>
+							</div>
+						</div>
+					</div>
+					<div className="basis-1/5"></div>
+				</div>
+			)}
+		</div>
+	);
 }
 
 export default ActivityDetailsPage;

@@ -6,6 +6,7 @@ import { Card, Button } from "react-daisyui";
 import { AuthContext } from "../context/auth.context";
 import { Link } from "react-router-dom";
 import EditProfile from "../components/EditProfile";
+import FooterCard from "../components/FooterCard";
 
 export default function UserProfilePage() {
 	const [isEditVisible, setIsEditVisible] = useState(false);
@@ -43,7 +44,7 @@ export default function UserProfilePage() {
 	useEffect(() => {
 		getActivitiesOfUser();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [username]);
+	}, [username, user]);
 
 	return (
 		<div>
@@ -97,6 +98,7 @@ export default function UserProfilePage() {
 			{isEditVisible && (
 				<EditProfile toggleIsEditVisible={toggleIsEditVisible} />
 			)}
+			<FooterCard />
 		</div>
 	);
 }

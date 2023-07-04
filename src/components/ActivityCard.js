@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { Card, Button, Divider } from "react-daisyui";
 import { useContext } from "react";
 import { AuthContext } from "../context/auth.context";
+import FooterCard from "./FooterCard";
 
 function ActivityCard(props) {
   const { user } = useContext(AuthContext);
@@ -9,7 +10,7 @@ function ActivityCard(props) {
     <>
       <Card className="my-2 bg-gray-200 shadow-xl ActivityCard card lg:card-side">
         <Card.Image
-          src={props.images}
+          src={props.images[0]}
           alt="image"
           style={{ maxWidth: "300px" }}
         />

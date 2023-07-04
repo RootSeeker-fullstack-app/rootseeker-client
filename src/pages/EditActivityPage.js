@@ -5,20 +5,40 @@ import { Input, Button, Textarea } from "react-daisyui";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const API_URL = process.env.REACT_APP_API_URL;
-
 function EditActivityPage() {
-  const { activityId } = useParams();
-  const navigate = useNavigate();
+	const API_URL = process.env.REACT_APP_API_URL;
+	const { activityId } = useParams();
+	const navigate = useNavigate();
 
-  const [inputs, setInputs] = useState(null);
+	const [showAddImage, setShowAddImage] = useState(false);
 
-  const handleOnChange = (e) => {
-    setInputs((prevState) => ({
-      ...prevState,
-      [e.target.name]: e.target.value,
-    }));
-  };
+	const toggleImage = () => {
+		setShowAddImage(!showAddImage);
+	};
+
+	const [imageUrl, setImageUrl] = useState("");
+
+	const [inputs, setInputs] = useState(null);
+
+	const handleFileUpload = (e) => {
+		const uploadData = new FormData();
+
+		uploadData.append("imageUrl", e.target.files[0]);
+
+		axios
+			.post(`${API_URL}/api/upload`, uploadData)
+			.then((response) => {
+				setImageUrl(response.data.fileUrl);
+			})
+			.catch((err) => console.log("Error while uploading the file: ", err));
+	};
+
+	const handleOnChange = (e) => {
+		setInputs((prevState) => ({
+			...prevState,
+			[e.target.name]: e.target.value,
+		}));
+	};
 
   useEffect(() => {
     axios
@@ -31,23 +51,67 @@ function EditActivityPage() {
       );
   }, [activityId]);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setTimeout(() => {
-      const storedToken = localStorage.getItem("authToken");
+	const handleSubmit = (e) => {
+		e.preventDefault();
 
-      axios
-        .put(`${API_URL}/api/activities/${activityId}`, inputs, {
-          headers: { Authorization: `Bearer ${storedToken}` },
-        })
-        .then(() => navigate(`/activities/${activityId}`))
-        .catch((error) =>
-          console.log("Error updating activity from API", error)
-        );
-    }, 3000);
-  };
-  const notifyUpdate = () =>
-    toast.success(`You updated successfully your activity`);
+		const newActivity = {
+			...inputs,
+		};
+
+		if (imageUrl) {
+			newActivity.images = imageUrl;
+		}
+
+		setTimeout(() => {
+			const storedToken = localStorage.getItem("authToken");
+
+			axios
+				.put(`${API_URL}/api/activities/${activityId}`, newActivity, {
+					headers: { Authorization: `Bearer ${storedToken}` },
+				})
+				.then(() => navigate(`/activities/${activityId}`))
+				.catch((error) =>
+					console.log("Error updating activity from API", error)
+				);
+		}, 3000);
+	};
+
+	const handleAddImage = (e) => {
+		e.preventDefault();
+		notifyUpdate();
+		const storedToken = localStorage.getItem("authToken");
+		setTimeout(() => {
+			axios
+				.get(`${API_URL}/api/activities/${activityId}`, {
+					headers: { Authorization: `Bearer ${storedToken}` },
+				})
+				.then((response) => {
+					const activity = response.data;
+					const newImages = activity.images || []; // Retrieve existing images or initialize an empty array
+
+					if (imageUrl) {
+						newImages.push(imageUrl); // Push the new image URL to the array
+					}
+
+					const updatedActivity = {
+						...activity,
+						images: newImages,
+					};
+
+					axios
+						.put(`${API_URL}/api/activities/${activityId}`, updatedActivity, {
+							headers: { Authorization: `Bearer ${storedToken}` },
+						})
+						.then(() => navigate(`/activities/edit/${activityId}`))
+						.catch((error) =>
+							console.log("Error updating activity from API", error)
+						);
+				});
+		}, 3000);
+	};
+
+	const notifyUpdate = () =>
+		toast.success(`You updated successfully your activity`);
 
   return (
     <div>
@@ -124,25 +188,37 @@ function EditActivityPage() {
                 <label>Image:</label>
                 <Input
                   borderOffset="true"
-                  type="text"
-                  name="image"
-                  value={inputs.images || ""}
-                  onChange={handleOnChange}
+                  type="file"
+                 
+                  onChange={handleFileUpload}
                 />
 
-                <Button type="submit" onClick={notifyUpdate} className="mt-5">
-                  Submit
-                </Button>
-                <ToastContainer position="top-center" autoClose={2000} />
-              </form>
-            </div>
-            <div className="basis-1/2">this is the right component</div>
-          </div>
-          <div className="basis-1/4"></div>
-        </div>
-      )}
-    </div>
-  );
+								<Button onClick={notifyUpdate} className="mt-5">
+									Submit
+								</Button>
+								<ToastContainer position="top-center" autoClose={2000} />
+							</form>
+
+							<Button onClick={toggleImage}>Add more photos</Button>
+							{showAddImage && (
+								<div>
+									<label>Another image:</label>
+									<Input
+										borderOffset="true"
+										type="file"
+										onChange={handleFileUpload}
+									/>
+									<Button onClick={handleAddImage}>Submit new photo</Button>
+								</div>
+							)}
+						</div>
+						<div className="basis-1/2">this is the right component</div>
+					</div>
+					<div className="basis-1/4"></div>
+				</div>
+			)}
+		</div>
+	);
 }
 
 export default EditActivityPage;
