@@ -112,7 +112,7 @@ export default function ActivityListPage() {
               </div>
               <div>
                 {!activitiesFiltered ? (
-                  <span className="loading loading-spinner loading-md"></span>
+                  <span className="loading loading-ring loading-md"></span>
                 ) : (
                   activitiesFiltered.map((activity) => (
                     <ActivityCard key={activity._id} {...activity} />

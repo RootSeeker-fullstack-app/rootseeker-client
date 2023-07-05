@@ -64,8 +64,7 @@ function AddActivityPage(props) {
     }, 2000);
   };
   const notify = () =>
-    toast.success(`Your reservation has been submitted!
-                    Check it on cart`);
+    toast.success(`Your activity has been created successfully`);
 
   return (
     <div>

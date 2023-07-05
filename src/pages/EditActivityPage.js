@@ -98,15 +98,18 @@ function EditActivityPage() {
             images: newImages,
           };
 
-          axios
-            .put(`${API_URL}/api/activities/${activityId}`, updatedActivity, {
+          return axios.put(
+            `${API_URL}/api/activities/${activityId}`,
+            updatedActivity,
+            {
               headers: { Authorization: `Bearer ${storedToken}` },
-            })
-            .then(() => navigate(`/activities/edit/${activityId}`))
-            .catch((error) =>
-              console.log("Error updating activity from API", error)
-            );
-        });
+            }
+          );
+        })
+        .then(() => navigate(`/activities/${activityId}`))
+        .catch((error) =>
+          console.log("Error updating activity from API", error)
+        );
     }, 3000);
   };
 
