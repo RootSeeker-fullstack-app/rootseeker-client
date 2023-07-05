@@ -73,6 +73,7 @@ function ActivityDetailsPage() {
                 {/* <h3>Available: {activity.available}</h3> */}
                 <h3>Date: {activity.date.slice(0, 10)}</h3>
                 <h3>Price: {activity.price}€</h3>
+                <h3>Categoy: {activity.category}</h3>
                 <h3>Max. participants: {activity.maxParticipants}</h3>
                 {user ? (
                   <Link to={`/profile/${activity.user.username}`}>

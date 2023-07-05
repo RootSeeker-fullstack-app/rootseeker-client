@@ -20,10 +20,10 @@ function ActivityCard(props) {
           </Link>
           <p>Description: {props.description} </p>
           <p>Duration: {props.duration}min </p>
-          <p>Available: {props.availabe} </p>
           <p>Activity date: {props.date.slice(0, 10)} </p>
           <p>Price per adult: {props.price}€ </p>
           <p>Max. Participants: {props.maxParticipants} </p>
+          <p>Category: {props.category} </p>
           {user ? (
             <Link to={`/profile/${props.user.username}`}>
               <p>Host: {props.user.username} </p>
