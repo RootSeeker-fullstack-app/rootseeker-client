@@ -21,7 +21,7 @@ function NavBarComponent(props) {
 
 	const [isSignupVisible, setIsSignupVisible] = useState(false);
 	const [isLoginVisible, setIsLoginVisible] = useState(false);
-	const [reservations, setReservations] = useState(null);
+	const [reservations, setReservations] = useState([]);
 
 	const getReservations = () => {
 		axios
@@ -179,6 +179,12 @@ function NavBarComponent(props) {
 									<Card.Body className="card-body">
 										<>
 											<h2>RESERVATIONS:</h2>
+											{reservations.length === 0 && (
+												<>
+													<p>No booked activities</p>
+													<Link to={"/activities"}>Check out activities!</Link>
+												</>
+											)}
 											{!reservations ? (
 												<p>Loading...</p>
 											) : (
