@@ -47,7 +47,7 @@ function LoginPage() {
 		<div>
 			<div className="flex flex-row items-center justify-center h-screen w-70 bg-[#22A699]">
 				<div>
-					<img src="https://res.cloudinary.com/dcslof4ax/image/upload/v1688541243/rootseeker-gallery/nlidrsjfdbxhlghdzdjw.png" />
+					<img src="https://res.cloudinary.com/dcslof4ax/image/upload/v1688541243/rootseeker-gallery/nlidrsjfdbxhlghdzdjw.png" alt="" />
 				</div>
 				<form className="LoginPage" onSubmit={handleLoginSubmit} open="visible">
 					<h1 className="p-4 text-white text-9xl">Login.</h1>

@@ -52,7 +52,7 @@ export default function UserProfilePage() {
 				<div className="hidden col-span-2 p-11 ">Column 1</div>
 				<div className="col-span-5 col-start-3 row-span-5 p-11">
 					{!currentUser ? (
-						<p>Loading...</p>
+						<span className="loading loading-ring loading-md"></span>
 					) : (
 						<Card side="lg" className="shadow-xl">
 							<Card.Image
@@ -85,7 +85,7 @@ export default function UserProfilePage() {
 				<div className="col-span-3 col-start-4 p-11">
 					<div>
 						{!activities ? (
-							<p>Loading...</p>
+							<span className="loading loading-ring loading-md"></span>
 						) : (
 							activities.map((activity) => {
 								return <ActivityCard key={activity._id} {...activity} />;

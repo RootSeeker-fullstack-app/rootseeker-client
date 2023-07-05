@@ -82,8 +82,8 @@ function NavBarComponent(props) {
 	];
 
 	return (
-		<div className="z-40 flex items-center justify-center w-full gap-2 p-4 pb-0 font-sans component-preview ">
-			<Navbar className="z-40">
+		<div className="z-40 flex items-center justify-center w-full gap-2 p-4 pb-0 font-sans component-preview">
+			<Navbar className="z-40 shadow-xl navbar bg-base-100 rounded-box">
 				<Navbar.Start>
 					<h3>Logo</h3>
 					<h3>
@@ -108,31 +108,6 @@ function NavBarComponent(props) {
 					)}
 				</Navbar.Start>
 				<Navbar.End>
-					<div className="primary-content dropdown ">
-						<label tabIndex={0} className="m-1 btn">
-							Theme
-						</label>
-						<ul
-							tabIndex={0}
-							className="dropdown-content z-[1] menu p-2 shadow rounded-box w-52"
-						>
-							{themes.map((theme, index) => {
-								return (
-									<div className="primary-content">
-										<li>
-											<p
-												onClick={() => {
-													props.handleTheme(`${theme}`);
-												}}
-											>
-												{theme}
-											</p>
-										</li>
-									</div>
-								);
-							})}
-						</ul>
-					</div>
 					<div className="z-40 flex-none">
 						{isLoggedIn && (
 							<>
@@ -155,9 +130,9 @@ function NavBarComponent(props) {
 										</div>
 									</Button>
 									<Dropdown.Menu className="z-40 mt-3 w-52 menu-compact right-8">
-										<li>
+										<Dropdown.Item>
 											<Link to={`/profile/${user.username}`}>Profile</Link>
-										</li>
+										</Dropdown.Item>
 										<Dropdown.Item>Settings</Dropdown.Item>
 										<Dropdown.Item>
 											<Link onClick={logOutUser}>Logout</Link>
@@ -230,7 +205,7 @@ function NavBarComponent(props) {
 							</div>
 							<div className="drawer-side">
 								<label htmlFor="my-drawer-4" className="drawer-overlay"></label>
-								<div className="h-full p-4 menu w-80 ">
+								<div className="h-full p-4 menu w-80 bg-base-200 text-base-content">
 									{/* Sidebar content here */}
 									<Card.Body className="card-body">
 										<>
@@ -263,7 +238,6 @@ function NavBarComponent(props) {
 							</div>
 						</div>
 					</Dropdown>
-
 					{/* {THIS IS GOING TO BE A COMPONENT} */}
 				</Navbar.End>
 			</Navbar>

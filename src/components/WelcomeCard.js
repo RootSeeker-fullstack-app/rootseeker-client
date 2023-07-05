@@ -7,6 +7,7 @@ export default function WelcomeCard() {
 			<div className="flex-col hero-content lg:flex-row">
 				<img
 					src="https://www.windsorgreatpark.co.uk/wp-content/uploads/2022/11/38.-Swinley-Forest-scaled.jpg"
+					alt=""
 					className="max-w-xl rounded-lg shadow-2xl"
 				/>
 				<div>
