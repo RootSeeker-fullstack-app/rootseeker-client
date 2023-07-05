@@ -75,14 +75,14 @@ function Search() {
           </div>
         </form>
       </div>
-      <Dropdown className="flex flex-col text-left list-none border-b-4 border-l-4 border-r-4 rounded-lg">
+      <Dropdown className="flex flex-col text-left list-none border-b-4 border-l-4 border-r-4 rounded-lg border-primary">
         {!filteredItems ? (
           <span className="loading loading-ring loading-md"></span>
         ) : (
           filteredItems.map((item) => {
             return (
               <Dropdown.Item
-                className="px-3 py-1 rounded bg-base-100"
+                className="px-3 py-1 bg-base-100"
                 onClick={() =>
                   onSearch(item.name && navigate(`/activities/${item._id}`)) ||
                   (item.username && navigate(`/profile/${item.username}`))
