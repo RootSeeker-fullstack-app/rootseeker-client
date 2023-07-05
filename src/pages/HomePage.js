@@ -30,7 +30,6 @@ export default function HomePage() {
 					<WelcomeCard />
 				</ParallaxLayer>
 				<ParallaxLayer
-					// className="bg-green-200"
 					sticky={{ start: 1, end: 3 }}
 					style={{
 						...alignCenter,

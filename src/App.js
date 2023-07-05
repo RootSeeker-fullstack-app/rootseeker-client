@@ -19,12 +19,94 @@ function App() {
 	const [theme, setTheme] = useState("light");
 
 	const handleTheme = (banana) => {
-		if (banana === "dark") {
-			setTheme("dark");
-			console.log(theme);
-		} else if (banana === "aqua") {
-			setTheme("aqua");
-			console.log(theme);
+		switch (banana) {
+			case "dark":
+				setTheme("dark");
+				break;
+			case "cupcake":
+				setTheme("cupcake");
+				break;
+			case "bumblebee":
+				setTheme("bumblebee");
+				break;
+			case "emerald":
+				setTheme("emerald");
+				break;
+			case "corporate":
+				setTheme("corporate");
+				break;
+			case "synthwave":
+				setTheme("synthwave");
+				break;
+			case "retro":
+				setTheme("retro");
+				break;
+			case "cyberpunk":
+				setTheme("cyberpunk");
+				break;
+			case "valentine":
+				setTheme("valentine");
+				break;
+			case "halloween":
+				setTheme("halloween");
+				break;
+			case "garden":
+				setTheme("garden");
+				break;
+			case "forest":
+				setTheme("forest");
+				break;
+			case "aqua":
+				setTheme("aqua");
+				break;
+			case "lofi":
+				setTheme("lofi");
+				break;
+			case "pastel":
+				setTheme("pastel");
+				break;
+			case "fantasy":
+				setTheme("fantasy");
+				break;
+			case "wireframe":
+				setTheme("wireframe");
+				break;
+			case "black":
+				setTheme("black");
+				break;
+			case "luxury":
+				setTheme("luxury");
+				break;
+			case "dracula":
+				setTheme("dracula");
+				break;
+			case "cmyk":
+				setTheme("cmyk");
+				break;
+			case "autumn":
+				setTheme("autumn");
+				break;
+			case "business":
+				setTheme("business");
+				break;
+			case "acid":
+				setTheme("acid");
+				break;
+			case "lemonade":
+				setTheme("lemonade");
+				break;
+			case "night":
+				setTheme("night");
+				break;
+			case "coffee":
+				setTheme("coffee");
+				break;
+			case "winter":
+				setTheme("winter");
+				break;
+			default:
+				setTheme("light");
+				break;
 		}
 	};
 

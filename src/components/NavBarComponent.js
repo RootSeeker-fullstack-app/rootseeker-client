@@ -49,10 +49,41 @@ function NavBarComponent(props) {
 	const toggleIsLoginVisible = () => {
 		setIsLoginVisible(!isLoginVisible);
 	};
+	const themes = [
+		"light",
+		"dark",
+		"cupcake",
+		"bumblebee",
+		"emerald",
+		"corporate",
+		"synthwave",
+		"retro",
+		"cyberpunk",
+		"valentine",
+		"halloween",
+		"garden",
+		"forest",
+		"aqua",
+		"lofi",
+		"pastel",
+		"fantasy",
+		"wireframe",
+		"black",
+		"luxury",
+		"dracula",
+		"cmyk",
+		"autumn",
+		"business",
+		"acid",
+		"lemonade",
+		"night",
+		"coffee",
+		"winter",
+	];
 
 	return (
-		<div className="z-40 flex items-center justify-center w-full gap-2 p-4 pb-0 font-sans component-preview">
-			<Navbar className="z-40 shadow-xl navbar bg-base-100 rounded-box">
+		<div className="z-40 flex items-center justify-center w-full gap-2 p-4 pb-0 font-sans component-preview ">
+			<Navbar className="z-40">
 				<Navbar.Start>
 					<h3>Logo</h3>
 					<h3>
@@ -77,6 +108,31 @@ function NavBarComponent(props) {
 					)}
 				</Navbar.Start>
 				<Navbar.End>
+					<div className="primary-content dropdown ">
+						<label tabIndex={0} className="m-1 btn">
+							Theme
+						</label>
+						<ul
+							tabIndex={0}
+							className="dropdown-content z-[1] menu p-2 shadow rounded-box w-52"
+						>
+							{themes.map((theme, index) => {
+								return (
+									<div className="primary-content">
+										<li>
+											<p
+												onClick={() => {
+													props.handleTheme(`${theme}`);
+												}}
+											>
+												{theme}
+											</p>
+										</li>
+									</div>
+								);
+							})}
+						</ul>
+					</div>
 					<div className="z-40 flex-none">
 						{isLoggedIn && (
 							<>
@@ -174,7 +230,7 @@ function NavBarComponent(props) {
 							</div>
 							<div className="drawer-side">
 								<label htmlFor="my-drawer-4" className="drawer-overlay"></label>
-								<div className="h-full p-4 menu w-80 bg-base-200 text-base-content">
+								<div className="h-full p-4 menu w-80 ">
 									{/* Sidebar content here */}
 									<Card.Body className="card-body">
 										<>
@@ -202,44 +258,11 @@ function NavBarComponent(props) {
 												</div>
 											)}
 										</>
-										<Card.Actions>
-											<Button color="primary" fullWidth>
-												View cart
-											</Button>
-										</Card.Actions>
 									</Card.Body>
 								</div>
 							</div>
 						</div>
 					</Dropdown>
-					<div className="dropdown">
-						<label tabIndex={0} className="m-1 btn">
-							Click
-						</label>
-						<ul
-							tabIndex={0}
-							className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
-						>
-							<li>
-								<p
-									onClick={() => {
-										props.handleTheme("dark");
-									}}
-								>
-									Dark
-								</p>
-							</li>
-							<li>
-								<p
-									onClick={() => {
-										props.handleTheme("aqua");
-									}}
-								>
-									pink
-								</p>
-							</li>
-						</ul>
-					</div>
 
 					{/* {THIS IS GOING TO BE A COMPONENT} */}
 				</Navbar.End>

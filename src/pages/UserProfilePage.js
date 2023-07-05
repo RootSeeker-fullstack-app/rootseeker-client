@@ -49,7 +49,7 @@ export default function UserProfilePage() {
 	return (
 		<div>
 			<div className="grid grid-cols-9 gap-4 grid-rows-15 p-11">
-				<div className="hidden col-span-2 bg-gray-200 p-11 ">Column 1</div>
+				<div className="hidden col-span-2 p-11 ">Column 1</div>
 				<div className="col-span-5 col-start-3 row-span-5 p-11">
 					{!currentUser ? (
 						<p>Loading...</p>
@@ -79,9 +79,9 @@ export default function UserProfilePage() {
 						</Card>
 					)}
 				</div>
-				<div className="hidden col-span-2 bg-gray-200 p-11">1</div>
-				<div className="col-span-9 bg-gray-200 p-11">2</div>
-				<div className="hidden col-span-3 bg-gray-400 p-11">3</div>
+				<div className="hidden col-span-2 0 p-11">1</div>
+				<div className="col-span-9 p-11">2</div>
+				<div className="hidden col-span-3 p-11">3</div>
 				<div className="col-span-3 col-start-4 p-11">
 					<div>
 						{!activities ? (
