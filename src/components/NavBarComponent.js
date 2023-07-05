@@ -16,7 +16,7 @@ import axios from "axios";
 
 const API_URL = process.env.REACT_APP_API_URL;
 
-function NavBarComponent() {
+function NavBarComponent(props) {
 	const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
 
 	const [isSignupVisible, setIsSignupVisible] = useState(false);
@@ -206,6 +206,35 @@ function NavBarComponent() {
 							</div>
 						</div>
 					</Dropdown>
+					<div className="dropdown">
+						<label tabIndex={0} className="m-1 btn">
+							Click
+						</label>
+						<ul
+							tabIndex={0}
+							className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
+						>
+							<li>
+								<p
+									onClick={() => {
+										props.handleTheme("dark");
+									}}
+								>
+									Dark
+								</p>
+							</li>
+							<li>
+								<p
+									onClick={() => {
+										props.handleTheme("aqua");
+									}}
+								>
+									pink
+								</p>
+							</li>
+						</ul>
+					</div>
+
 					{/* {THIS IS GOING TO BE A COMPONENT} */}
 				</Navbar.End>
 			</Navbar>
