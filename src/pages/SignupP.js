@@ -37,75 +37,96 @@ function SignupP() {
 	};
 
 	return (
-		<form className="SignupPage" onSubmit={handleSignupSubmit} open="visible">
-			<div>Sign up now</div>
+		<div>
+			<div className="flex flex-row items-center h-screen w-70 bg-[#22A699]">
+				<div className="justify-start max-h-screen ">
+					<img
+						className="h-screen shadow"
+						src="https://res.cloudinary.com/dcslof4ax/image/upload/v1686861743/user-folder/qd7q49wamrdh7ng3uaaq.jpg"
+						alt="Burger"
+					/>
+				</div>
+				<form
+					className="p-16 ml-96 SignupPage"
+					onSubmit={handleSignupSubmit}
+					open="visible"
+				>
+					<div className="flex flex-row text-6xl text-white">
+						Sign up now<p className="mx-4 rotate-45 mt-[4px]">!</p>
+					</div>
 
-			<div className="flex flex-col ">
-				<label>Email:</label>
-				<Input
-					borderOffset="true"
-					type="email"
-					name="email"
-					value={inputs.email || ""}
-					onChange={handleOnChange}
-					required={true}
-					onKeyDown={handleKeyDown}
-				/>
+					<div className="flex flex-col text-left text-white">
+						<label>Email:</label>
+						<Input
+							borderOffset="true"
+							type="email"
+							name="email"
+							value={inputs.email || ""}
+							onChange={handleOnChange}
+							required={true}
+							onKeyDown={handleKeyDown}
+						/>
 
-				<label>Password:</label>
-				<Input
-					borderOffset="true"
-					type="password"
-					name="password"
-					value={inputs.password || ""}
-					onChange={handleOnChange}
-					required={true}
-					onKeyDown={handleKeyDown}
-				/>
+						<label>Password:</label>
+						<Input
+							borderOffset="true"
+							type="password"
+							name="password"
+							value={inputs.password || ""}
+							onChange={handleOnChange}
+							required={true}
+							onKeyDown={handleKeyDown}
+						/>
 
-				<label>userName:</label>
-				<Input
-					type="text"
-					borderOffset="true"
-					name="username"
-					value={inputs.username || ""}
-					onChange={handleOnChange}
-					required={true}
-					onKeyDown={handleKeyDown}
-				/>
+						<label>userName:</label>
+						<Input
+							type="text"
+							borderOffset="true"
+							name="username"
+							value={inputs.username || ""}
+							onChange={handleOnChange}
+							required={true}
+							onKeyDown={handleKeyDown}
+						/>
 
-				<label>firstName:</label>
-				<Input
-					type="text"
-					name="firstName"
-					borderOffset="true"
-					value={inputs.firstName || ""}
-					onChange={handleOnChange}
-					required={true}
-					onKeyDown={handleKeyDown}
-				/>
+						<label>first name:</label>
+						<Input
+							type="text"
+							name="firstName"
+							borderOffset="true"
+							value={inputs.firstName || ""}
+							onChange={handleOnChange}
+							required={true}
+							onKeyDown={handleKeyDown}
+						/>
 
-				<label>lastName:</label>
-				<Input
-					type="text"
-					name="lastName"
-					value={inputs.lastName || ""}
-					borderOffset="true"
-					onChange={handleOnChange}
-					required={true}
-					onKeyDown={handleKeyDown}
-				/>
+						<label>last name:</label>
+						<Input
+							type="text"
+							name="lastName"
+							value={inputs.lastName || ""}
+							borderOffset="true"
+							onChange={handleOnChange}
+							required={true}
+							onKeyDown={handleKeyDown}
+						/>
 
-				<Button color="primary" className="mt-3" type="submit">
-					Sign Up
-				</Button>
+						<Button color="primary" className="mt-3" type="submit">
+							Sign Up
+						</Button>
 
-				{errorMessage && <p className="error-message">{errorMessage}</p>}
+						{errorMessage && <p className="error-message">{errorMessage}</p>}
+						<div className="flex flex-row justify-between">
+							<p>Already have an account?</p>
+							<Link className="text-5xl" to="/login">
+								{" "}
+								Login
+							</Link>
+						</div>
+					</div>
+				</form>
 			</div>
-
-			<p>Already have an account?</p>
-			<Link to="/login"> Login</Link>
-		</form>
+		</div>
 	);
 }
 

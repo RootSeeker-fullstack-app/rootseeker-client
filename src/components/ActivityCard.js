@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import { Card, Button, Divider } from "react-daisyui";
 import { useContext } from "react";
 import { AuthContext } from "../context/auth.context";
-import FooterCard from "./FooterCard";
 
 function ActivityCard(props) {
   const { user } = useContext(AuthContext);

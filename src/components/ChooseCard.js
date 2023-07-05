@@ -1,47 +1,40 @@
 import { useSpring, animated } from "@react-spring/web";
-// import { Link } from "react-router-dom";
-import { Button } from "react-daisyui";
 
-export default function HomeCard() {
+export default function ChooseCard() {
 	const springs = useSpring({
 		from: { x: "-800%" },
-		to: { x: "120%" },
+		to: { x: "80%" },
 	});
 
 	return (
 		<animated.div
 			style={{
-				width: 20 + "rem",
+				width: 40 + "rem",
 				height: 20 + "rem",
 				// background: "#ff6d6d",
 				borderRadius: 8,
 				...springs,
 			}}
 		>
-			<div className="card w-96 bg-neutral text-neutral-content">
+			<div className="text-gray-800 card w-96">
 				<div className="relative items-center text-center card-body">
-					<h2 className="card-title">
-						With RootSeeker you can track activities all over the World
-					</h2>
-					<p>
-						With Rootseeker you can meet new people and find cool outdoor
-						activities in your city or in the nature nearby
+					<h2 className="text-right text-9xl card-title">Mood</h2>
+					<h5 className="text-6xl text-right card-title">
+						Choose the activity you want
+					</h5>
+					<p className="my-4 text-2xl">
+						You can choose between our categories depending on your mood. From
+						land activities like hiking, to water-sports, to city treasure hunt.
 					</p>
-					<div className="justify-end card-actions">
+					<div className="flex flex-col justify-end card-actions">
 						<h1>Choose your category</h1>
+						<div className="relative h-20 w-72">
+							<h5 className="absolute top-0 left-0 p-3">Catergory</h5>
+							<h5 className="absolute bottom-0 right-0 p-3">Catergory</h5>
+							<h5 className="absolute top-0 right-0 p-3">Catergory</h5>
 
-						<Button color="ghost" className="btn-xs">
-							Activities
-						</Button>
-						<Button color="ghost" className="btn-xs">
-							Activities
-						</Button>
-						<Button color="ghost" className="btn-xs">
-							Activities
-						</Button>
-						<Button color="ghost" className="btn-xs">
-							Activities
-						</Button>
+							<h5 className="absolute bottom-0 left-0 p-3">Catergory</h5>
+						</div>
 					</div>
 				</div>
 			</div>

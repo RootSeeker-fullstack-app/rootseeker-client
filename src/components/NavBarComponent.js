@@ -137,7 +137,7 @@ function NavBarComponent() {
 
           {/* {THIS IS GOING TO BE A COMPONENT} */}
           <Dropdown vertical="end">
-            <div tabIndex={0} className="z-40 drawer drawer-end">
+            <div tabIndex={0} className="z-40 drawer drawer-end drawer-overlay">
               <input
                 id="my-drawer-4"
                 type="checkbox"
@@ -150,13 +150,7 @@ function NavBarComponent() {
                   shape="circle"
                   className="p-5 m-3 drawer-button"
                 >
-                  <Indicator
-                    item={
-                      <Badge className="z-30" size="sm">
-                        {reservations?.length}
-                      </Badge>
-                    }
-                  >
+                  <Indicator>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       className="w-5 h-5"
@@ -173,6 +167,9 @@ function NavBarComponent() {
                       />
                     </svg>
                   </Indicator>
+                  <span className="z-30 badge" size="sm">
+										{reservations?.length}
+									</span>
                 </label>
               </div>
               <div className="drawer-side">
