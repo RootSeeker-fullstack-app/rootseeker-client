@@ -82,7 +82,7 @@ function Search() {
           filteredItems.map((item) => {
             return (
               <Dropdown.Item
-                className="px-3 py-1 bg-base-100"
+                className="px-3 py-1 bg-base-100 hover:cursor-pointer hover:bg-base-300"
                 onClick={() =>
                   onSearch(item.name && navigate(`/activities/${item._id}`)) ||
                   (item.username && navigate(`/profile/${item.username}`))

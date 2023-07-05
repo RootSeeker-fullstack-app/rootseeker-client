@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { Input, Button, Textarea } from "react-daisyui";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import FooterCard from "../components/FooterCard";
 
 function EditActivityPage() {
   const API_URL = process.env.REACT_APP_API_URL;
@@ -235,6 +236,7 @@ function EditActivityPage() {
           <div className="basis-1/4"></div>
         </div>
       )}
+      <FooterCard />
     </div>
   );
 }

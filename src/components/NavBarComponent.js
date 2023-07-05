@@ -155,7 +155,9 @@ function NavBarComponent(props) {
 										<Dropdown.Item>
 											<Link to={`/profile/${user.username}`}>Profile</Link>
 										</Dropdown.Item>
-										<Dropdown.Item>Settings</Dropdown.Item>
+										<Dropdown.Item>
+											<Link to={'/activities/create'}>Create activity</Link>
+										</Dropdown.Item>
 										<Dropdown.Item>
 											<Link onClick={logOutUser}>Logout</Link>
 										</Dropdown.Item>

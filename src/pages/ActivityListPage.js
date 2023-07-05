@@ -22,28 +22,34 @@ export default function ActivityListPage() {
   };
 
   const filterByCategory = (category) => {
-    if (category === "Land") {
-      const filteredByLand = activities.filter((activity) => {
-        return activity.category === "Land";
-      });
-      setActivitiesFiltered(filteredByLand);
-    } else if (category === "Water") {
-      const filteredByWater = activities.filter((activity) => {
-        return activity.category === "Water";
-      });
-      setActivitiesFiltered(filteredByWater);
-    } else if (category === "Cultural") {
-      const filteredByCultural = activities.filter((activity) => {
-        return activity.category === "Cultural";
-      });
-      setActivitiesFiltered(filteredByCultural);
-    } else if (category === "Sky") {
-      const filteredByCultural = activities.filter((activity) => {
-        return activity.category === "Sky";
-      });
-      setActivitiesFiltered(filteredByCultural);
-    } else if (category === "All") {
-      setActivitiesFiltered(activities);
+    switch (category) {
+      case "Land":
+        const filteredByLand = activities.filter((activity) => {
+          return activity.category === "Land";
+        });
+        setActivitiesFiltered(filteredByLand);
+        break;
+      case "Water":
+        const filteredByWater = activities.filter((activity) => {
+          return activity.category === "Water";
+        });
+        setActivitiesFiltered(filteredByWater);
+        break;
+      case "Cultural":
+        const filteredByCultural = activities.filter((activity) => {
+          return activity.category === "Cultural";
+        });
+        setActivitiesFiltered(filteredByCultural);
+        break;
+      case "Sky":
+        const filteredBySky = activities.filter((activity) => {
+          return activity.category === "Sky";
+        });
+        setActivitiesFiltered(filteredBySky);
+        break;
+      case "All":
+        setActivitiesFiltered(activities);
+        break;
     }
   };
 

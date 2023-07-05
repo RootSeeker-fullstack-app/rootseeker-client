@@ -6,6 +6,7 @@ import { AuthContext } from "../context/auth.context";
 import { Button } from "react-daisyui";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import FooterCard from "../components/FooterCard";
 
 function ActivityDetailsPage() {
 	const [activity, setActivity] = useState(null);
@@ -174,6 +175,7 @@ function ActivityDetailsPage() {
 					<div className="basis-1/5"></div>
 				</div>
 			)}
+			<FooterCard />
 		</div>
 	);
 }
