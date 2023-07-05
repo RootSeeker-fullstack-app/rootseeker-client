@@ -90,24 +90,46 @@ function NavBarComponent(props) {
 						<strong>RootSeeker</strong>
 					</h3>
 					<Link to="/">
-						<Button color="ghost" className="btn-xs">
+						<Button color="primary" className="btn-xs btn-outline">
 							home
 						</Button>
 					</Link>
 					<Link to="/activities">
-						<Button color="ghost" className="btn-xs">
+						<Button color="primary" className="mx-2 btn-xs btn-outline">
 							Activities
 						</Button>
 					</Link>
 					{isLoggedIn && (
 						<Link to={"/activities/create"}>
-							<Button color="ghost" className="btn-xs">
+							<Button color="primary" className="btn-xs btn-outline">
 								Become a Host
 							</Button>
 						</Link>
 					)}
 				</Navbar.Start>
 				<Navbar.End>
+					<Dropdown className="dropdown dropdown-end">
+						<Button color="primary" size="sm" tabIndex={0} className="m-1 btn">
+							Theme
+						</Button>
+						<ul
+							tabIndex={0}
+							className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52 "
+						>
+							{themes.map((theme, index) => {
+								return (
+									<Dropdown.Item
+										key={index}
+										onClick={() => {
+											props.handleTheme(theme);
+										}}
+									>
+										{theme}
+									</Dropdown.Item>
+								);
+							})}
+						</ul>
+					</Dropdown>
 					<div className="z-40 flex-none">
 						{isLoggedIn && (
 							<>
