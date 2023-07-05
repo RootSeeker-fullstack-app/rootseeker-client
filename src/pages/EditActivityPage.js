@@ -116,7 +116,7 @@ function EditActivityPage() {
   return (
     <div>
       {!inputs ? (
-        <p>Loading...</p>
+        <span className="loading loading-ring loading-md"></span>
       ) : (
         <div className="flex flex-row">
           <div className="basis-1/4"></div>

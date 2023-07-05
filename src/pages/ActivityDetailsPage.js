@@ -53,7 +53,7 @@ function ActivityDetailsPage() {
   return (
     <div>
       {!activity ? (
-        <p>Loading...</p>
+        <span className="loading loading-ring loading-md"></span>
       ) : (
         <div className="flex flex-row">
           <div className="basis-1/5"></div>

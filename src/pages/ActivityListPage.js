@@ -58,7 +58,7 @@ export default function ActivityListPage() {
         <div className="basis-1/4"></div>
         <div className="flex flex-row ActivityListPage basis-1/2">
           {!activities ? (
-            <p>Loading</p>
+            <span className="loading loading-ring loading-md"></span>
           ) : (
             <>
               <div className="basis-1/3">
@@ -112,7 +112,7 @@ export default function ActivityListPage() {
               </div>
               <div>
                 {!activitiesFiltered ? (
-                  <p>loading...</p>
+                  <span className="loading loading-spinner loading-md"></span>
                 ) : (
                   activitiesFiltered.map((activity) => (
                     <ActivityCard key={activity._id} {...activity} />

@@ -12,6 +12,7 @@ function Search() {
 
 	useEffect(() => {
 		getItemsFromApi();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	const getItemsFromApi = () => {
@@ -76,7 +77,7 @@ function Search() {
 			</div>
 			<Dropdown className="flex flex-col text-left list-none border-b-4 border-l-4 border-r-4 rounded-lg">
 				{!filteredItems ? (
-					<p>loading...</p>
+					<span className="loading loading-ring loading-md"></span>
 				) : (
 					filteredItems.map((item) => {
 						return (

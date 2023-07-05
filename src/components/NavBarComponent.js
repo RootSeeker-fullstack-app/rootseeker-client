@@ -99,9 +99,9 @@ function NavBarComponent() {
                     </div>
                   </Button>
                   <Dropdown.Menu className="z-40 mt-3 w-52 menu-compact right-8">
-                    <li>
+                  <Dropdown.Item>
                       <Link to={`/profile/${user.username}`}>Profile</Link>
-                    </li>
+                      </Dropdown.Item>
                     <Dropdown.Item>Settings</Dropdown.Item>
                     <Dropdown.Item>
                       <Link onClick={logOutUser}>Logout</Link>
@@ -186,7 +186,7 @@ function NavBarComponent() {
                         </>
                       )}
                       {!reservations ? (
-                        <p>Loading...</p>
+                        <span className="loading loading-ring loading-md"></span>
                       ) : (
                         <div>
                           {reservations.map((reservation) => {
