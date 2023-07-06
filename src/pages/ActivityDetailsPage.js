@@ -139,7 +139,10 @@ function ActivityDetailsPage() {
 						<div className="border-b-2 border-l-2 border-r-2 rounded-lg border-primary">
 							{user === null ? (
 								<p>
-									<Link to={"/login"}>Login</Link> to book this activity
+									<Link to={"/login"}>
+										<Button color="primary"> Login</Button>
+									</Link>
+									to book this activity
 								</p>
 							) : (
 								<>

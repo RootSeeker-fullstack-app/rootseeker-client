@@ -106,7 +106,7 @@ function NavBarComponent(props) {
 					</div>
 					<ul
 						tabIndex={0}
-						className="menu menu-sm dropdown-content mt-3 z-[40] p-2 shadow bg-base-100 text-left rounded-box w-52 lg:hidden"
+						className="menu menu-sm dropdown-content mt-3 z-[1000000] p-2 shadow bg-base-100 text-left rounded-box w-52 lg:hidden"
 					>
 						<Link to={"/"}>
 							<h3>Logo</h3>
@@ -161,7 +161,7 @@ function NavBarComponent(props) {
 						</Button>
 						<ul
 							tabIndex={0}
-							className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box left-2 w-52 "
+							className="dropdown-content z-[10000] menu p-2 shadow bg-base-100 rounded-box left-2 w-52 "
 						>
 							{themes.map((theme, index) => {
 								return (
@@ -241,7 +241,7 @@ function NavBarComponent(props) {
 					)}
 
 					{/* {THIS IS GOING TO BE A COMPONENT} */}
-					<Dropdown vertical="end">
+					<Dropdown vertical="end" className="z-[1000]">
 						<div tabIndex={0} className="z-40 drawer drawer-end drawer-overlay">
 							<input
 								id="my-drawer-4"
