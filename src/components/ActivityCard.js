@@ -8,11 +8,14 @@ function ActivityCard(props) {
 	return (
 		<>
 			<Card className="my-2 shadow-xl ActivityCard card lg:card-side">
-				<Card.Image
-					src={props.images[0]}
-					alt="image"
-					style={{ maxWidth: "300px" }}
-				/>
+				<div className="lg:w-80">
+					<img
+						className="object-cover w-full lg:h-full "
+						src={props.images[0]}
+						alt="image"
+					/>
+				</div>
+
 				<Card.Body className="card-body">
 					<Link to={`/activities/${props._id}`}>
 						<Card.Title className="card-title">{props.name}</Card.Title>

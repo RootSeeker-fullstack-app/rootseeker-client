@@ -85,23 +85,20 @@ function NavBarComponent(props) {
 		<div className="z-40 flex items-center justify-center w-full gap-2 p-4 pb-0 font-sans component-preview">
 			<Navbar className="z-40 shadow-xl navbar bg-base-100 rounded-box">
 				<Navbar.Start>
-					<h3>Logo</h3>
-					<h3>
-						<strong>RootSeeker</strong>
-					</h3>
-					<Link to="/">
-						<Button color="primary" className="btn-xs btn-outline">
-							home
-						</Button>
+					<Link to={"/"}>
+						<h3>Logo</h3>
+						<h3>
+							<strong>RootSeeker</strong>
+						</h3>
 					</Link>
 					<Link to="/activities">
-						<Button color="primary" className="mx-2 btn-xs btn-outline">
+						<Button color="primary" className="mx-2 btn-xs ">
 							Activities
 						</Button>
 					</Link>
 					{isLoggedIn && (
 						<Link to={"/activities/create"}>
-							<Button color="primary" className="btn-xs btn-outline">
+							<Button color="primary" className="btn-xs">
 								Become a Host
 							</Button>
 						</Link>
@@ -156,7 +153,7 @@ function NavBarComponent(props) {
 											<Link to={`/profile/${user.username}`}>Profile</Link>
 										</Dropdown.Item>
 										<Dropdown.Item>
-											<Link to={'/activities/create'}>Create activity</Link>
+											<Link to={"/activities/create"}>Create activity</Link>
 										</Dropdown.Item>
 										<Dropdown.Item>
 											<Link onClick={logOutUser}>Logout</Link>

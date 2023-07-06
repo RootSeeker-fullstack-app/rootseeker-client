@@ -43,7 +43,7 @@ const LeafMap = (props) => {
 									rectangle: false,
 									circle: false,
 									circlemarker: false,
-									marker: false,
+									// marker: false,
 									polygon: false,
 								}}
 							/>

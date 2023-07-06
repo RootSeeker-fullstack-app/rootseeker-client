@@ -68,7 +68,14 @@ function AddActivityPage(props) {
 	};
 
 	const handleCreated = (createdObject) => {
-		let coords = createdObject.layer.editing.latlngs[0];
+		console.log(createdObject.layer.latlngs);
+		let coords;
+		if (createdObject.layer.editing.latlngs) {
+			coords = createdObject.layer.editing.latlngs[0];
+		} else {
+			coords = [createdObject.layer._latlng];
+		}
+
 		let banana = coords.map((e) => {
 			if (
 				typeof e === "object" &&
@@ -107,29 +114,6 @@ function AddActivityPage(props) {
 								required={true}
 							/>
 
-							<label>Description:</label>
-							<Textarea
-								borderOffset="true"
-								type="text"
-								name="description"
-								value={inputs.description || ""}
-								onChange={handleOnChange}
-							/>
-							<label>Category:</label>
-							<select
-								className="w-full max-w-xs select select-bordered"
-								name="category"
-								required={true}
-								onChange={handleOnChange}
-							>
-								<option disabled selected>
-									Select category
-								</option>
-								<option value={"Land"}>Land</option>
-								<option value={"Water"}>Water</option>
-								<option value={"Sky"}>Sky</option>
-								<option value={"Cultural"}>Cultural</option>
-							</select>
 							<label>Description:</label>
 							<Textarea
 								borderOffset="true"
