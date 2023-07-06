@@ -34,11 +34,11 @@ export default function FooterCard() {
 				<a href="https://github.com/fndoRamos" className="link link-hover">
 					Fernando Ramos
 				</a>
-				<a href="https://github.com/fndoRamos">
+				<a href="https://github.com/fndoRamos" className="link link-hover" >
 					<ion-icon name="logo-linkedin"></ion-icon>
 					github.com/fndoRamos
 				</a>
-				<a href="https://github.com/fndoRamos">
+				<a href="https://github.com/fndoRamos" className="link link-hover">
 					<ion-icon name="logo-github"></ion-icon>
 					github.com/fndoRamos
 				</a>

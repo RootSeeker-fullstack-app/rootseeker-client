@@ -11,7 +11,7 @@ function IsPrivate({ children }) {
 	if (!isLoggedIn) {
 		// If the user is not logged in
 		console.log("this is the problem");
-		return <Navigate to="/" />;
+		return <Navigate to="/login" />;
 	} else {
 		// If the user is logged in, allow to see the page
 		return children;

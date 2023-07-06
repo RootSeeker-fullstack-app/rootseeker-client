@@ -86,8 +86,7 @@ function AddActivityPage(props) {
 	};
 
 	const notify = () =>
-		toast.success(`Your reservation has been submitted!
-   Check it on cart`);
+		toast.success(`Your activity has been created successfully`);
 
 	return (
 		<div>
@@ -115,6 +114,30 @@ function AddActivityPage(props) {
 								name="description"
 								value={inputs.description || ""}
 								onChange={handleOnChange}
+							/>
+							<label>Category:</label>
+							<select
+								className="w-full max-w-xs select select-bordered"
+								name="category"
+								required={true}
+								onChange={handleOnChange}
+							>
+								<option disabled selected>
+									Select category
+								</option>
+								<option value={"Land"}>Land</option>
+								<option value={"Water"}>Water</option>
+								<option value={"Sky"}>Sky</option>
+								<option value={"Cultural"}>Cultural</option>
+							</select>
+							<label>Description:</label>
+							<Textarea
+								borderOffset="true"
+								type="text"
+								name="description"
+								value={inputs.description || ""}
+								onChange={handleOnChange}
+								required={true}
 							/>
 							<label>Category:</label>
 							<select

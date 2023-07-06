@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { Input, Button, Textarea } from "react-daisyui";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import FooterCard from "../components/FooterCard";
 
 function EditActivityPage() {
   const API_URL = process.env.REACT_APP_API_URL;
@@ -98,15 +99,18 @@ function EditActivityPage() {
             images: newImages,
           };
 
-          axios
-            .put(`${API_URL}/api/activities/${activityId}`, updatedActivity, {
+          return axios.put(
+            `${API_URL}/api/activities/${activityId}`,
+            updatedActivity,
+            {
               headers: { Authorization: `Bearer ${storedToken}` },
-            })
-            .then(() => navigate(`/activities/edit/${activityId}`))
-            .catch((error) =>
-              console.log("Error updating activity from API", error)
-            );
-        });
+            }
+          );
+        })
+        .then(() => navigate(`/activities/${activityId}`))
+        .catch((error) =>
+          console.log("Error updating activity from API", error)
+        );
     }, 3000);
   };
 
@@ -232,6 +236,7 @@ function EditActivityPage() {
           <div className="basis-1/4"></div>
         </div>
       )}
+      <FooterCard />
     </div>
   );
 }

@@ -51,8 +51,8 @@ function LoginPage() {
 				</div>
 				<form className="LoginPage" onSubmit={handleLoginSubmit} open="visible">
 					<h1 className="p-4 text-white text-9xl">Login.</h1>
-					<div className="flex flex-col mt-3 text-left text-white">
-						<label>Email:</label>
+					<div className="flex flex-col mt-3 text-left">
+						<label className="text-white">Email:</label>
 						<Input
 							borderOffset={true}
 							type="email"
@@ -62,7 +62,7 @@ function LoginPage() {
 							onKeyDown={handleKeyDown}
 						/>
 
-						<label>Password:</label>
+						<label className="text-white">Password:</label>
 						<Input
 							borderOffset={true}
 							type="password"
