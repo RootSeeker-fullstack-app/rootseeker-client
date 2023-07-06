@@ -20,3 +20,8 @@ code {
 	height: 600px;
 	width: 100%;
 }
+
+.details-box h3 {
+	margin: 5px;
+	text-decoration: underline;
+}

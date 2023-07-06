@@ -48,7 +48,7 @@ export default function UserProfilePage() {
 
 	return (
 		<div>
-			<div className="flex flex-col items-center justify-center bg-fixed ">
+			<div className="flex flex-col items-center min-h-screen bg-fixed">
 				<div className="relative hidden p-11 ">Column 1</div>
 				<div
 					className="absolute w-screen h-96 top-52"

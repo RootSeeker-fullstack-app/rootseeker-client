@@ -58,125 +58,127 @@ function ActivityDetailsPage() {
 				<span className="loading loading-ring loading-md"></span>
 			) : (
 				<div className="items-center justify-center w-11/12 min-h-screen lg:flex md:flex">
-					<div className="max-w-xl my-16 lg:w-1/3 mx-14">
+					<div className="max-w-xl my-16 lg:w-1/2 mx-14">
 						<LeafMapDetails coordinates={activity.coordinates} />
 					</div>
-					<div className="lg:flex md:flex">
-						<div className=" lg:w-1/2 sm:w-80">
-							<div>
-								<h1 className="text-4xl">{activity.name}</h1>
+					<div className="lg:w-1/2">
+						<div className="border-2 rounded-lg lg:flex md:flex border-primary">
+							<div className=" lg:w-1/2 sm:w-80">
+								<div>
+									<h1 className="text-4xl">{activity.name}</h1>
 
-								<div className="mx-4 text-left">
-									<h3>
-										Description:<br></br> {activity.description} <br></br>
+									<div className="mx-4 text-left details-box ">
+										<h3>
+											Description:<br></br>
+										</h3>
+										<p>{activity.description}</p>
 										<br></br>
-									</h3>
-									<h3>Duration ⌚: {activity.duration}min</h3>
+										<h3>Duration ⌚: {activity.duration}min</h3>
 
-									{/* <h3>Available: {activity.available}</h3> */}
-									<h3>Date 📅: {activity.date.slice(0, 10)}</h3>
-									<h3>Price 💰: {activity.price}€</h3>
-									<h3>
-										Max. participants 👩🏾‍🤝‍🧑: {activity.maxParticipants}
-									</h3>
-									<h3>Category: {activity.category}</h3>
-									{user ? (
-										<Link to={`/profile/${activity.user.username}`}>
+										{/* <h3>Available: {activity.available}</h3> */}
+										<h3>Date 📅: {activity.date.slice(0, 10)}</h3>
+										<h3>Price 💰: {activity.price}€</h3>
+										<h3>
+											Max. participants 👩🏾‍🤝‍🧑: {activity.maxParticipants}
+										</h3>
+										<h3>Category: {activity.category}</h3>
+										{user ? (
+											<Link to={`/profile/${activity.user.username}`}>
+												<h3>Host: {activity.user.username} </h3>
+											</Link>
+										) : (
 											<h3>Host: {activity.user.username} </h3>
-										</Link>
-									) : (
-										<h3>Host: {activity.user.username} </h3>
-									)}
-									{user === null ? (
-										<p>
-											<Link to={"/login"}>Login</Link> to book this activity
-										</p>
-									) : (
-										<>
-											{user.username !== activity.user.username ? (
-												<>
-													{showReservationForm && (
-														<MakeReservationForm {...activity} />
-													)}
-
-													{showReservationForm ? (
-														<Button
-															className="btn btn-primary"
-															onClick={reservationFormState}
-														>
-															Hide Form
-														</Button>
-													) : (
-														<Button
-															className="btn btn-primary"
-															onClick={reservationFormState}
-														>
-															Make reservation
-														</Button>
-													)}
-												</>
-											) : (
-												<div className="mx-4 my-5 text-right">
-													<Link
-														to={`/activities/edit/${activityId}`}
-														className="mx-3 btn btn-primary"
+										)}
+									</div>
+								</div>
+							</div>
+							<div className=" lg:w-1/2 sm:w-80">
+								<div className="w-full carousel">
+									{activity.images.map((image, index) => (
+										<div
+											id={`slide${index}`}
+											className="relative w-full carousel-item"
+											key={index}
+										>
+											<img
+												src={image}
+												className="object-cover w-auto h-full"
+												alt={`Slide ${index}`}
+											/>
+											<div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
+												{index > 0 && (
+													<a
+														href={`#slide${index - 1}`}
+														className="btn btn-circle"
 													>
-														Edit
-													</Link>
-													<Button
-														className="btn btn-error"
-														onClick={() => {
-															notify();
-															setTimeout(deleteActivity, 3000);
-														}}
+														❮
+													</a>
+												)}
+												{index < activity.images.length - 1 && (
+													<a
+														href={`#slide${index + 1}`}
+														className="btn btn-circle"
 													>
-														Delete
-													</Button>
-													<ToastContainer
-														position="top-center"
-														autoClose={2000}
-													/>
-												</div>
-											)}
-										</>
-									)}
+														❯
+													</a>
+												)}
+											</div>
+										</div>
+									))}
 								</div>
 							</div>
 						</div>
-						<div className=" lg:w-1/2 sm:w-80">
-							<div className="w-full carousel">
-								{activity.images.map((image, index) => (
-									<div
-										id={`slide${index}`}
-										className="relative w-full carousel-item"
-										key={index}
-									>
-										<img
-											src={image}
-											className="w-full"
-											alt={`Slide ${index}`}
-										/>
-										<div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-											{index > 0 && (
-												<a
-													href={`#slide${index - 1}`}
-													className="btn btn-circle"
-												>
-													❮
-												</a>
+						<div className="border-b-2 border-l-2 border-r-2 rounded-lg border-primary">
+							{user === null ? (
+								<p>
+									<Link to={"/login"}>Login</Link> to book this activity
+								</p>
+							) : (
+								<>
+									{user.username !== activity.user.username ? (
+										<>
+											{showReservationForm && (
+												<MakeReservationForm {...activity} />
 											)}
-											{index < activity.images.length - 1 && (
-												<a
-													href={`#slide${index + 1}`}
-													className="btn btn-circle"
+
+											{showReservationForm ? (
+												<Button
+													className="btn btn-primary"
+													onClick={reservationFormState}
 												>
-													❯
-												</a>
+													Hide Form
+												</Button>
+											) : (
+												<Button
+													className="btn btn-primary"
+													onClick={reservationFormState}
+												>
+													Make reservation
+												</Button>
 											)}
+										</>
+									) : (
+										<div className="mx-4 my-5 text-right">
+											<Link
+												to={`/activities/edit/${activityId}`}
+												className="mx-3 btn btn-primary"
+											>
+												Edit
+											</Link>
+											<Button
+												className="btn btn-error"
+												onClick={() => {
+													notify();
+													setTimeout(deleteActivity, 3000);
+												}}
+											>
+												Delete
+											</Button>
+											<ToastContainer position="top-center" autoClose={2000} />
 										</div>
-									</div>
-								))}
-							</div>
+									)}
+								</>
+							)}
 						</div>
 					</div>
 				</div>

@@ -33,7 +33,7 @@ const LeafMapDetails = (props) => {
 	return (
 		<div>
 			<MapContainer
-				style={{ height: "480px", width: "620px" }}
+				// style={{ height: "480px", width: "620px" }}
 				center={center}
 				zoom={16}
 				ref={mapRef}
