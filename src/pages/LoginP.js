@@ -47,7 +47,10 @@ function LoginPage() {
 		<div>
 			<div className="flex flex-row items-center justify-center h-screen w-70 bg-[#22A699]">
 				<div>
-					<img src="https://res.cloudinary.com/dcslof4ax/image/upload/v1688541243/rootseeker-gallery/nlidrsjfdbxhlghdzdjw.png" alt="" />
+					<img
+						src="https://res.cloudinary.com/dcslof4ax/image/upload/v1688541243/rootseeker-gallery/nlidrsjfdbxhlghdzdjw.png"
+						alt=""
+					/>
 				</div>
 				<form className="LoginPage" onSubmit={handleLoginSubmit} open="visible">
 					<h1 className="p-4 text-white text-9xl">Login.</h1>
@@ -75,7 +78,7 @@ function LoginPage() {
 						<Button color="primary" type="submit" className="mt-3">
 							Login
 						</Button>
-						<div className="flex flex-row justify-between">
+						<div className="flex flex-row justify-between text-white">
 							<p>Don't have an account yet?</p>
 							<p className="text-3xl rotate-90 my-9">YET??? </p>
 						</div>

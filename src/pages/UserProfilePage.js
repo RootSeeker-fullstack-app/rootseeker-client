@@ -48,13 +48,22 @@ export default function UserProfilePage() {
 
 	return (
 		<div>
-			<div className="grid grid-cols-9 gap-4 grid-rows-15 p-11">
-				<div className="hidden col-span-2 p-11 ">Column 1</div>
-				<div className="col-span-5 col-start-3 row-span-5 p-11">
+			<div className="flex flex-col items-center justify-center bg-fixed ">
+				<div className="relative hidden p-11 ">Column 1</div>
+				<div
+					className="absolute w-screen h-96 top-52"
+					style={{
+						backgroundImage:
+							'url("https://images.pexels.com/photos/675764/pexels-photo-675764.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1")',
+						backgroundSize: "cover",
+						backgroundPosition: "center",
+					}}
+				></div>
+				<div className="p-11">
 					{!currentUser ? (
 						<span className="loading loading-ring loading-md"></span>
 					) : (
-						<Card side="lg" className="shadow-xl">
+						<Card side="lg" className="shadow-xl bg-base-100">
 							<Card.Image
 								src={currentUser.imgProfile}
 								className="w-20 h-20 top-2 left-2 "
@@ -79,10 +88,8 @@ export default function UserProfilePage() {
 						</Card>
 					)}
 				</div>
-				<div className="hidden col-span-2 0 p-11">1</div>
-				<div className="col-span-9 p-11">2</div>
-				<div className="hidden col-span-3 p-11">3</div>
-				<div className="col-span-3 col-start-4 p-11">
+
+				<div className=" p-11 bg-base-100">
 					<div>
 						{!activities ? (
 							<span className="loading loading-ring loading-md"></span>
@@ -93,7 +100,6 @@ export default function UserProfilePage() {
 						)}
 					</div>
 				</div>
-				<div className="hidden col-span-3 bg-gray-400 p-11">5</div>
 			</div>
 			{isEditVisible && (
 				<EditProfile toggleIsEditVisible={toggleIsEditVisible} />

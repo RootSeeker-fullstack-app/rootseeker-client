@@ -33,9 +33,9 @@ const LeafMapDetails = (props) => {
 	return (
 		<div>
 			<MapContainer
-				style={{ height: "480px", width: "100%" }}
+				style={{ height: "480px", width: "620px" }}
 				center={center}
-				zoom={6}
+				zoom={16}
 				ref={mapRef}
 				whenReady={setMap}
 				scrollWheelZoom={true}

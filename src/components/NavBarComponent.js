@@ -116,6 +116,7 @@ function NavBarComponent(props) {
 							{themes.map((theme, index) => {
 								return (
 									<Dropdown.Item
+										className="z-auto"
 										key={index}
 										onClick={() => {
 											props.handleTheme(theme);
