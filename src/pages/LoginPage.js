@@ -58,7 +58,7 @@ function LoginPage({ toggleIsLoginVisible, toggleIsSignupVisible }) {
 			>
 				✕
 			</button>
-			<h1>Login</h1>
+			<Modal.Header className="text-4xl">Login</Modal.Header>
 			<Modal.Body className="flex flex-col mt-3">
 				<label>Email:</label>
 				<Input
@@ -80,14 +80,19 @@ function LoginPage({ toggleIsLoginVisible, toggleIsSignupVisible }) {
 					onKeyDown={handleKeyDown}
 				/>
 
-				<button color="primary" type="submit" className="mt-3">
+				<Button color="primary" type="submit" className="mt-3">
 					Login
-				</button>
+				</Button>
 			</Modal.Body>
 			{errorMessage && <p className="error-message">{errorMessage}</p>}
 
 			<p>Don't have an account yet?</p>
-			<Button onClick={handleSignupClick}>Sign Up</Button>
+			<Button
+				className="btn-outline btn-xs btn-primary"
+				onClick={handleSignupClick}
+			>
+				Sign Up
+			</Button>
 		</Modal>
 	);
 }

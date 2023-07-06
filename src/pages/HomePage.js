@@ -13,7 +13,7 @@ export default function HomePage() {
 		"https://images.pexels.com/photos/17201962/pexels-photo-17201962/free-photo-of-landscape-sunset-field-summer.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1";
 	return (
 		<div className="flex justify-center">
-			<div className="z-40 justify-center w-1/2 ">
+			<div className="z-40 justify-center hidden w-1/4 lg:block">
 				<SearchBarComp />
 			</div>
 

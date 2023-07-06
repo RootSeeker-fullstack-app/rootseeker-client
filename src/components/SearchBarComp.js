@@ -63,7 +63,7 @@ function Search() {
 			<div className="flex flex-col">
 				<label className="my-2 text-2xl text-left">Search</label>
 				<form>
-					<div className="flex flex-row mb-2">
+					<div className="flex mb-2 lg:flex-row ">
 						<Input
 							bordered
 							className="mr-2 grow"
@@ -90,7 +90,7 @@ function Search() {
 								key={item._id}
 							>
 								{item.name || (
-									<div className="flex flex-row">
+									<div className="lg:flex lg:flex-row">
 										<span>
 											<img
 												src={item.imgProfile}

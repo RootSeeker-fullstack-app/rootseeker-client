@@ -13,6 +13,7 @@ import SignupPage from "../pages/SignupPage";
 import LoginPage from "../pages/LoginPage";
 import ReservationsComponent from "./ReservationsComponent";
 import axios from "axios";
+import Search from "./SearchBarComp";
 
 const API_URL = process.env.REACT_APP_API_URL;
 
@@ -82,36 +83,85 @@ function NavBarComponent(props) {
 	];
 
 	return (
-		<div className="z-40 flex items-center justify-center w-full gap-2 p-4 pb-0 font-sans component-preview">
-			<Navbar className="z-40 shadow-xl navbar bg-base-100 rounded-box">
-				<Navbar.Start>
-					<Link to={"/"}>
-						<h3>Logo</h3>
-						<h3>
-							<strong>RootSeeker</strong>
-						</h3>
-					</Link>
-					<Link to="/activities">
-						<Button color="primary" className="mx-2 btn-xs ">
-							Activities
+		<div className="z-40 items-center justify-center w-full gap-2 p-4 pb-0 font-sans lg:items-center lg:justify-center lg:flex component-preview">
+			<Navbar className="z-40 shadow-xl navbar bg-base-100 rounded-box burger">
+				<Navbar.Start className="dropdown">
+					<div className="text-left">
+						<Button tabIndex={0} className=" btn btn-ghost lg:hidden">
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								className="w-5 h-5"
+								fill="none"
+								viewBox="0 0 24 24"
+								stroke="currentColor"
+							>
+								<path
+									strokeLinecap="round"
+									strokeLinejoin="round"
+									strokeWidth="2"
+									d="M4 6h16M4 12h8m-8 6h16"
+								/>
+							</svg>
 						</Button>
-					</Link>
-					{isLoggedIn && (
-						<Link to={"/activities/create"}>
-							<Button color="primary" className="btn-xs">
-								Become a Host
+					</div>
+					<ul
+						tabIndex={0}
+						className="menu menu-sm dropdown-content mt-3 z-[40] p-2 shadow bg-base-100 text-left rounded-box w-52 lg:hidden"
+					>
+						<Link to={"/"}>
+							<h3>Logo</h3>
+							<h3>
+								<strong>RootSeeker</strong>
+							</h3>
+						</Link>
+						<Link to="/activities">
+							<Button color="primary" className="mx-2 my-4 btn-xs ">
+								Activities
 							</Button>
 						</Link>
-					)}
+
+						{isLoggedIn && (
+							<Link to={"/activities/create"}>
+								<Button color="primary" className="btn-xs">
+									Become a Host
+								</Button>
+							</Link>
+						)}
+					</ul>
+					<div className="hidden navbar-start lg:flex">
+						<Link to={"/"}>
+							<h3>Logo</h3>
+							<h3>
+								<strong>RootSeeker</strong>
+							</h3>
+						</Link>
+						<Link to="/activities">
+							<Button color="primary" className="mx-2 btn-xs ">
+								Activities
+							</Button>
+						</Link>
+						{isLoggedIn && (
+							<Link to={"/activities/create"}>
+								<Button color="primary" className="btn-xs">
+									Become a Host
+								</Button>
+							</Link>
+						)}
+					</div>
 				</Navbar.Start>
-				<Navbar.End>
+
+				<Navbar.End className="flex flex-end">
 					<Dropdown className="dropdown dropdown-end">
-						<Button color="primary" size="sm" tabIndex={0} className="m-1 btn">
+						<Button
+							color="primary"
+							tabIndex={0}
+							className="z-50 m-1 btn-xs lg:mr-3"
+						>
 							Theme
 						</Button>
 						<ul
 							tabIndex={0}
-							className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52 "
+							className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box left-2 w-52 "
 						>
 							{themes.map((theme, index) => {
 								return (
@@ -128,11 +178,13 @@ function NavBarComponent(props) {
 							})}
 						</ul>
 					</Dropdown>
-					<div className="z-40 flex-none">
+					<div className="z-40">
 						{isLoggedIn && (
 							<>
 								<Dropdown vertical="end">
-									<strong>{user && user.username}</strong>
+									<h1>
+										<strong>{user && user.username}</strong>
+									</h1>
 									<Button
 										color="primary"
 										className="avatar bg-cyan-50"
@@ -149,16 +201,16 @@ function NavBarComponent(props) {
 											/>
 										</div>
 									</Button>
-									<Dropdown.Menu className="z-40 mt-3 w-52 menu-compact right-8">
-										<Dropdown.Item>
-											<Link to={`/profile/${user.username}`}>Profile</Link>
-										</Dropdown.Item>
-										<Dropdown.Item>
-											<Link to={"/activities/create"}>Create activity</Link>
-										</Dropdown.Item>
-										<Dropdown.Item>
-											<Link onClick={logOutUser}>Logout</Link>
-										</Dropdown.Item>
+									<Dropdown.Menu className="z-40 mt-3 w-52 menu-compact right-3 lg:right-8">
+										<Link to={`/profile/${user.username}`}>
+											<Dropdown.Item>Profile</Dropdown.Item>
+										</Link>
+										<Link to={"/activities/create"}>
+											<Dropdown.Item>Create activity</Dropdown.Item>
+										</Link>
+										<Link onClick={logOutUser}>
+											<Dropdown.Item>Logout</Dropdown.Item>
+										</Link>
 									</Dropdown.Menu>
 								</Dropdown>
 							</>
