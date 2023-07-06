@@ -8,7 +8,7 @@ function ReservationsComponent(props) {
 	return (
 		<>
 			<div>
-				<div className="my-4 text-left shadow-xl card bg-primary">
+				<div className="my-4 text-left shadow-xl card bg-primary text-primary-content">
 					<div className="card-body">
 						<h2 className="card-title">{props.reservation.activity.name}</h2>
 						<p>Date 📅: {props.reservation.activity.date.slice(0, 10)}</p>

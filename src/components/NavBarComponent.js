@@ -83,8 +83,8 @@ function NavBarComponent(props) {
 	];
 
 	return (
-		<div className="z-40 items-center justify-center w-full gap-2 p-4 pb-0 font-sans lg:items-center lg:justify-center lg:flex component-preview">
-			<Navbar className="z-40 shadow-xl navbar bg-base-100 rounded-box burger">
+		<div className="z-[1500] items-center justify-center w-full gap-2 p-4 pb-0 font-sans lg:items-center lg:justify-center lg:flex component-preview">
+			<Navbar className="z-[1500] shadow-xl navbar bg-base-100 rounded-box burger">
 				<Navbar.Start className="dropdown">
 					<div className="text-left">
 						<Button tabIndex={0} className=" btn btn-ghost lg:hidden">
@@ -106,7 +106,7 @@ function NavBarComponent(props) {
 					</div>
 					<ul
 						tabIndex={0}
-						className="menu menu-sm dropdown-content mt-3 z-[1000000] p-2 shadow bg-base-100 text-left rounded-box w-52 lg:hidden"
+						className="menu menu-sm dropdown-content mt-3 z-[1500] p-2 shadow bg-base-100 text-left rounded-box w-52 lg:hidden"
 					>
 						<Link to={"/"}>
 							<h3>Logo</h3>
@@ -161,7 +161,7 @@ function NavBarComponent(props) {
 						</Button>
 						<ul
 							tabIndex={0}
-							className="dropdown-content z-[10000] menu p-2 shadow bg-base-100 rounded-box left-2 w-52 "
+							className="dropdown-content z-[1500]  menu p-2 shadow bg-base-100 rounded-box left-2 w-52 "
 						>
 							{themes.map((theme, index) => {
 								return (
@@ -187,7 +187,7 @@ function NavBarComponent(props) {
 									</h1>
 									<Button
 										color="primary"
-										className="avatar bg-cyan-50"
+										className=" avatar bg-cyan-50"
 										shape="circle"
 									>
 										<div className="w-10 rounded-full">
@@ -201,7 +201,7 @@ function NavBarComponent(props) {
 											/>
 										</div>
 									</Button>
-									<Dropdown.Menu className="z-40 mt-3 w-52 menu-compact right-3 lg:right-8">
+									<Dropdown.Menu className="z-[1500]  mt-3 w-52 menu-compact right-3 lg:right-8">
 										<Link to={`/profile/${user.username}`}>
 											<Dropdown.Item>Profile</Dropdown.Item>
 										</Link>
@@ -242,7 +242,10 @@ function NavBarComponent(props) {
 
 					{/* {THIS IS GOING TO BE A COMPONENT} */}
 					<Dropdown vertical="end" className="z-[1000]">
-						<div tabIndex={0} className="z-40 drawer drawer-end drawer-overlay">
+						<div
+							tabIndex={0}
+							className="z-[1500]  drawer drawer-end drawer-overlay"
+						>
 							<input
 								id="my-drawer-4"
 								type="checkbox"
@@ -272,7 +275,7 @@ function NavBarComponent(props) {
 											/>
 										</svg>
 									</Indicator>
-									<span className="z-30 badge" size="sm">
+									<span className="z-[1500]  badge" size="sm">
 										{reservations?.length}
 									</span>
 								</label>

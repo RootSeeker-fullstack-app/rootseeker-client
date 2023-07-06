@@ -63,10 +63,10 @@ function Search() {
 			<div className="flex flex-col">
 				<label className="my-2 text-2xl text-left">Search</label>
 				<form>
-					<div className="flex mb-2 lg:flex-row ">
+					<div className="flex mb-2 lg:flex-row">
 						<Input
 							bordered
-							className="mr-2 grow"
+							className="mr-2 shadow-lg grow shadow-primary"
 							value={value}
 							type="text"
 							onChange={onChange}
