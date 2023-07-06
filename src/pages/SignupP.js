@@ -55,8 +55,8 @@ function SignupP() {
 						Sign up now<p className="mx-4 rotate-45 mt-[4px]">!</p>
 					</div>
 
-					<div className="flex flex-col text-left text-white">
-						<label>Email:</label>
+					<div className="flex flex-col text-left">
+						<label className="text-white">Email:</label>
 						<Input
 							borderOffset="true"
 							type="email"
@@ -67,7 +67,7 @@ function SignupP() {
 							onKeyDown={handleKeyDown}
 						/>
 
-						<label>Password:</label>
+						<label className="text-white">Password:</label>
 						<Input
 							borderOffset="true"
 							type="password"
@@ -78,7 +78,7 @@ function SignupP() {
 							onKeyDown={handleKeyDown}
 						/>
 
-						<label>userName:</label>
+						<label className="text-white">userName:</label>
 						<Input
 							type="text"
 							borderOffset="true"
@@ -89,7 +89,7 @@ function SignupP() {
 							onKeyDown={handleKeyDown}
 						/>
 
-						<label>first name:</label>
+						<label className="text-white">first name:</label>
 						<Input
 							type="text"
 							name="firstName"
@@ -100,7 +100,7 @@ function SignupP() {
 							onKeyDown={handleKeyDown}
 						/>
 
-						<label>last name:</label>
+						<label className="text-white">last name:</label>
 						<Input
 							type="text"
 							name="lastName"

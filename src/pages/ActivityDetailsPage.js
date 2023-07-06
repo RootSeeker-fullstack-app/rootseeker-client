@@ -84,7 +84,7 @@ function ActivityDetailsPage() {
 									<h3>Host: {activity.user.username} </h3>
 								)}
 								{user === null ? (
-									<p>login to book this activity</p>
+									<p><Link to={"/login"}>Login</Link> to book this activity</p>
 								) : (
 									<>
 										{user.username !== activity.user.username ? (

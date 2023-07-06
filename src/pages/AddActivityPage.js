@@ -92,6 +92,7 @@ function AddActivityPage(props) {
                 name="description"
                 value={inputs.description || ""}
                 onChange={handleOnChange}
+                required={true}
               />
               <label>Category:</label>
               <select
