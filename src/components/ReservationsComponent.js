@@ -8,10 +8,16 @@ function ReservationsComponent(props) {
 	return (
 		<>
 			<div>
-				<h3>{props.reservation.activity.name}</h3>
-				<h3>Activity date: {props.reservation.activity.date.slice(0, 10)}</h3>
-				<h3>Number of people: {props.reservation.numberOfPeople}</h3>
-				<h3>Total price: {props.reservation.totalPrice}</h3>
+				<div className="my-4 text-left shadow-xl card bg-primary">
+					<div className="card-body">
+						<h2 className="card-title">{props.reservation.activity.name}</h2>
+						<p>Date 📅: {props.reservation.activity.date.slice(0, 10)}</p>
+						<h3>Participants 👩🏾‍🤝‍🧑: {props.reservation.numberOfPeople}</h3>
+						<h3>Total price 💰: {props.reservation.totalPrice}</h3>
+					</div>
+				</div>
+				<h3></h3>
+				<h3></h3>
 			</div>
 		</>
 	);
