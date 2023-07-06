@@ -6,6 +6,7 @@ import { AuthContext } from "../context/auth.context";
 import { Button } from "react-daisyui";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import LeafMapDetails from "../Leaflet/LeafMapDetails";
 
 function ActivityDetailsPage() {
 	const [activity, setActivity] = useState(null);
@@ -171,7 +172,9 @@ function ActivityDetailsPage() {
 							</div>
 						</div>
 					</div>
-					<div className="basis-1/5"></div>
+					<div className="basis-1/5">
+						<LeafMapDetails coordinates={activity.coordinates} />
+					</div>
 				</div>
 			)}
 		</div>
