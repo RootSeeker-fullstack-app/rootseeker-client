@@ -10,200 +10,217 @@ import LeafMap from "../Leaflet/LeafMap";
 const API_URL = process.env.REACT_APP_API_URL;
 
 function AddActivityPage(props) {
-	const [inputs, setInputs] = useState({});
-	const [imageUrl, setImageUrl] = useState("");
-	const [coordinates, setCoordinates] = useState([]);
+  const [inputs, setInputs] = useState({});
+  const [imageUrl, setImageUrl] = useState("");
+  const [coordinates, setCoordinates] = useState([]);
 
-	const [errorMessage, setErrorMessage] = useState(undefined);
-	const navigate = useNavigate();
+  const [errorMessage, setErrorMessage] = useState(undefined);
+  const [isUploadingImage, setIsUploadingImage] = useState(false);
+  const navigate = useNavigate();
 
-	const handleOnChange = (e) => {
-		setInputs((prevState) => ({
-			...prevState,
-			[e.target.name]: e.target.value,
-		}));
-	};
+  const handleOnChange = (e) => {
+    setInputs((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value,
+    }));
+  };
 
-	const handleFileUpload = (e) => {
-		const uploadData = new FormData();
+  const handleFileUpload = (e) => {
+    const uploadData = new FormData();
 
-		uploadData.append("imageUrl", e.target.files[0]);
+    uploadData.append("imageUrl", e.target.files[0]);
 
-		axios
-			.post(`${API_URL}/api/upload`, uploadData)
-			.then((response) => {
-				setImageUrl(response.data.fileUrl);
-			})
-			.catch((err) => console.log("Error while uploading the file: ", err));
-	};
+    setIsUploadingImage(true);
 
-	const handleSubmit = (e) => {
-		e.preventDefault();
-		setTimeout(() => {
-			const storedToken = localStorage.getItem("authToken");
-			const newActivity = {
-				...inputs,
-				coordinates,
-				images:
-					imageUrl ||
-					"https://res.cloudinary.com/dcslof4ax/image/upload/v1686843478/user-folder/p6sarfts5pwi4hygwgtm.jpg",
-			};
+    axios
+      .post(`${API_URL}/api/upload`, uploadData)
+      .then((response) => {
+        setImageUrl(response.data.fileUrl);
+      })
+      .catch((err) => console.log("Error while uploading the file: ", err))
+      .finally(() => {
+        setIsUploadingImage(false);
+      });
+  };
 
-			axios
-				.post(`${API_URL}/api/activities`, newActivity, {
-					headers: { Authorization: `Bearer ${storedToken}` },
-				})
-				.then((response) => {
-					// Reset the state
-					setInputs({});
-					navigate("/activities");
-					// props.refreshActivities();
-				})
-				.catch((error) => {
-					const errorDescription = error.response.data.message;
-					setErrorMessage(errorDescription);
-					console.log(errorMessage);
-				});
-		}, 2000);
-	};
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setTimeout(() => {
+      const storedToken = localStorage.getItem("authToken");
+      const newActivity = {
+        ...inputs,
+        coordinates,
+        images:
+          imageUrl ||
+          "https://res.cloudinary.com/dcslof4ax/image/upload/v1686843478/user-folder/p6sarfts5pwi4hygwgtm.jpg",
+      };
 
-	const handleCreated = (createdObject) => {
-		console.log(createdObject.layer.latlngs);
-		let coords;
-		if (createdObject.layer.editing.latlngs) {
-			coords = createdObject.layer.editing.latlngs[0];
-		} else {
-			coords = [createdObject.layer._latlng];
-		}
+      axios
+        .post(`${API_URL}/api/activities`, newActivity, {
+          headers: { Authorization: `Bearer ${storedToken}` },
+        })
+        .then((response) => {
+          // Reset the state
+          setInputs({});
+          navigate("/activities");
+          // props.refreshActivities();
+        })
+        .catch((error) => {
+          const errorDescription = error.response.data.message;
+          setErrorMessage(errorDescription);
+          console.log(errorMessage);
+        });
+    }, 2000);
+  };
 
-		let banana = coords.map((e) => {
-			if (
-				typeof e === "object" &&
-				e.hasOwnProperty("lat") &&
-				e.hasOwnProperty("lng")
-			) {
-				const latitude = parseFloat(e.lat);
-				const longitude = parseFloat(e.lng);
-				return { latitude, longitude };
-			}
-			return null;
-		});
-		console.log(banana, "coordinates");
-		setCoordinates(banana);
-	};
+  const handleCreated = (createdObject) => {
+    console.log(createdObject.layer.latlngs);
+    let coords;
+    if (createdObject.layer.editing.latlngs) {
+      coords = createdObject.layer.editing.latlngs[0];
+    } else {
+      coords = [createdObject.layer._latlng];
+    }
 
-	const notify = () =>
-		toast.success(`Your activity has been created successfully`);
+    let banana = coords.map((e) => {
+      if (
+        typeof e === "object" &&
+        e.hasOwnProperty("lat") &&
+        e.hasOwnProperty("lng")
+      ) {
+        const latitude = parseFloat(e.lat);
+        const longitude = parseFloat(e.lng);
+        return { latitude, longitude };
+      }
+      return null;
+    });
+    console.log(banana, "coordinates");
+    setCoordinates(banana);
+  };
 
-	return (
-		<div>
-			<div className="flex flex-row my-32">
-				<div className="basis-1/4"></div>
-				<div className="flex flex-row my-10 basis-1/2">
-					<div className="AddActivity basis-1/2">
-						<h3>Add Activity this is the left component</h3>
+  const notify = () =>
+    toast.success(`Your activity has been created successfully`);
 
-						<form className="flex flex-col" onSubmit={handleSubmit}>
-							<label>Title:</label>
-							<Input
-								borderOffset="true"
-								type="text"
-								name="name"
-								value={inputs.name || ""}
-								onChange={handleOnChange}
-								required={true}
-							/>
+  return (
+    <div>
+      <div className="flex flex-row my-32">
+        <div className="basis-1/4"></div>
+        <div className="flex flex-row my-10 basis-1/2">
+          <div className="AddActivity basis-1/2">
+            <h3>Add Activity this is the left component</h3>
 
-							<label>Description:</label>
-							<Textarea
-								borderOffset="true"
-								type="text"
-								name="description"
-								value={inputs.description || ""}
-								onChange={handleOnChange}
-								required={true}
-							/>
-							<label>Category:</label>
-							<select
-								className="w-full max-w-xs select select-bordered"
-								name="category"
-								required={true}
-								onChange={handleOnChange}
-							>
-								<option disabled selected>
-									Select category
-								</option>
-								<option value={"Land"}>Land</option>
-								<option value={"Water"}>Water</option>
-								<option value={"Sky"}>Sky</option>
-								<option value={"Cultural"}>Cultural</option>
-							</select>
+            <form className="flex flex-col" onSubmit={handleSubmit}>
+              <label>Title:</label>
+              <Input
+                borderOffset="true"
+                type="text"
+                name="name"
+                value={inputs.name || ""}
+                onChange={handleOnChange}
+                required={true}
+              />
 
-							<label>Duration:</label>
-							<Input
-								borderOffset="true"
-								type="number"
-								name="duration"
-								value={inputs.duration || ""}
-								onChange={handleOnChange}
-								required={true}
-							/>
+              <label>Description:</label>
+              <Textarea
+                borderOffset="true"
+                type="text"
+                name="description"
+                value={inputs.description || ""}
+                onChange={handleOnChange}
+                required={true}
+              />
+              <label>Category:</label>
+              <select
+                className="w-full max-w-xs select select-bordered"
+                name="category"
+                required={true}
+                onChange={handleOnChange}
+              >
+                <option disabled selected>
+                  Select category
+                </option>
+                <option value={"Land"}>Land</option>
+                <option value={"Water"}>Water</option>
+                <option value={"Sky"}>Sky</option>
+                <option value={"Cultural"}>Cultural</option>
+              </select>
 
-							<label>Price per adult:</label>
-							<Input
-								borderOffset="true"
-								type="number"
-								name="price"
-								value={inputs.price || ""}
-								onChange={handleOnChange}
-								required={true}
-							/>
+              <label>Duration:</label>
+              <Input
+                borderOffset="true"
+                type="number"
+                name="duration"
+                value={inputs.duration || ""}
+                onChange={handleOnChange}
+                required={true}
+              />
 
-							<label>Date:</label>
-							<Input
-								borderOffset="true"
-								type="date"
-								name="date"
-								value={inputs.date || ""}
-								onChange={handleOnChange}
-								required={true}
-							/>
+              <label>Price per adult:</label>
+              <Input
+                borderOffset="true"
+                type="number"
+                name="price"
+                value={inputs.price || ""}
+                onChange={handleOnChange}
+                required={true}
+              />
 
-							<label>Maximum of participants:</label>
-							<Input
-								borderOffset="true"
-								type="number"
-								min={1}
-								name="maxParticipants"
-								value={inputs.maxParticipants || ""}
-								onChange={handleOnChange}
-								required={true}
-							/>
+              <label>Date:</label>
+              <Input
+                borderOffset="true"
+                type="date"
+                name="date"
+                value={inputs.date || ""}
+                onChange={handleOnChange}
+                required={true}
+              />
 
-							<label>Image:</label>
-							<Input
-								borderOffset="true"
-								type="file"
-								// name="images"
-								// value={inputs.images || ""}
-								onChange={(e) => handleFileUpload(e)}
-							/>
+              <label>Maximum of participants:</label>
+              <Input
+                borderOffset="true"
+                type="number"
+                min={1}
+                name="maxParticipants"
+                value={inputs.maxParticipants || ""}
+                onChange={handleOnChange}
+                required={true}
+              />
 
-							<Button onClick={notify} type="submit" className="mt-5">
-								Submit
-							</Button>
-							<ToastContainer position="top-center" autoClose={2000} />
-						</form>
-					</div>
-					<div className="basis-1/2">
-						<LeafMap onCreated={handleCreated} />
-					</div>
-				</div>
-				<div className="basis-1/4"></div>
-			</div>
-			<FooterCard />
-		</div>
-	);
+              <label>Image:</label>
+              <Input
+                borderOffset="true"
+                type="file"
+                // name="images"
+                // value={inputs.images || ""}
+                onChange={(e) => handleFileUpload(e)}
+              />
+
+              {isUploadingImage ? (
+                <Button
+                  onClick={notify}
+                  type="submit"
+                  className="mt-5"
+                  disabled
+                >
+                  Uploading image...
+                </Button>
+              ) : (
+                <Button onClick={notify} type="submit" className="mt-5">
+                  Submit
+                </Button>
+              )}
+              <ToastContainer position="top-center" autoClose={2000} />
+            </form>
+          </div>
+          <div className="basis-1/2">
+            <LeafMap onCreated={handleCreated} />
+          </div>
+        </div>
+        <div className="basis-1/4"></div>
+      </div>
+      <FooterCard />
+    </div>
+  );
 }
 
 export default AddActivityPage;
