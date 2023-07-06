@@ -15,6 +15,8 @@ const LeafMapDetails = (props) => {
 	const mapRef = useRef();
 	const [map, setMap] = useState(null);
 
+	let center = {};
+
 	const markerIcon = new L.Icon({
 		iconUrl: "https://unpkg.com/leaflet@1.6/dist/images/marker-icon.png",
 		iconSize: [25, 41],
@@ -25,11 +27,19 @@ const LeafMapDetails = (props) => {
 		coord.latitude,
 		coord.longitude,
 	]);
-	const [center, setCenter] = useState({
-		lat: coordsArray[0][0],
-		lng: coordsArray[0][1],
-	});
 
+	if (coordsArray[0] === undefined) {
+		center = {
+			lat: 52.09005450585124,
+			lng: 5.124886002092049,
+		}
+	} else {
+		center = {
+			lat: coordsArray[0][0],
+			lng: coordsArray[0][1],
+		}
+	}
+	
 	return (
 		<div>
 			<MapContainer

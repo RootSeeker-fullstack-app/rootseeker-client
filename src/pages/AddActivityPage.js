@@ -94,7 +94,7 @@ function AddActivityPage(props) {
 			}
 			return null;
 		});
-		console.log(banana, "coordinates");
+
 		setCoordinates(banana);
 	};
 
