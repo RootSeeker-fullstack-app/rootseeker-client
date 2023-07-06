@@ -12,26 +12,32 @@ function EditActivityPage() {
   const navigate = useNavigate();
 
   const [showAddImage, setShowAddImage] = useState(false);
+  const [isUploadingImage, setIsUploadingImage] = useState(false);
+  const [imageUrl, setImageUrl] = useState("");
+
+  const [inputs, setInputs] = useState(null);
 
   const toggleImage = () => {
     setShowAddImage(!showAddImage);
   };
-
-  const [imageUrl, setImageUrl] = useState("");
-
-  const [inputs, setInputs] = useState(null);
 
   const handleFileUpload = (e) => {
     const uploadData = new FormData();
 
     uploadData.append("imageUrl", e.target.files[0]);
 
+    setIsUploadingImage(true);
+
     axios
       .post(`${API_URL}/api/upload`, uploadData)
       .then((response) => {
+        console.log("this one", response);
         setImageUrl(response.data.fileUrl);
       })
-      .catch((err) => console.log("Error while uploading the file: ", err));
+      .catch((err) => console.log("Error while uploading the file: ", err))
+      .finally(() => {
+        setIsUploadingImage(false);
+      });
   };
 
   const handleOnChange = (e) => {
@@ -227,7 +233,13 @@ function EditActivityPage() {
                     type="file"
                     onChange={handleFileUpload}
                   />
-                  <Button onClick={handleAddImage}>Submit new photo</Button>
+                  {isUploadingImage ? (
+                    <Button onClick={handleAddImage} disabled>
+                      Uploading image...
+                    </Button>
+                  ) : (
+                    <Button onClick={handleAddImage}>Submit new photo</Button>
+                  )}
                 </div>
               )}
             </div>
