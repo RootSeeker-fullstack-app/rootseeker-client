@@ -110,7 +110,7 @@ function AddActivityPage(props) {
 					</div>
 					<div className="mx-8 mb-5 lg:mx-10 AddActivity basis-1/2 ">
 						<h3 className="mb-4 text-6xl text-right underline decoration-primary">
-							Add Activity
+							Add Activity 🐱‍🚀
 						</h3>
 
 						<form className="flex flex-col text-left " onSubmit={handleSubmit}>

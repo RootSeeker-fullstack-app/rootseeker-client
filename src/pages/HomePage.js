@@ -84,11 +84,22 @@ export default function HomePage() {
 					}}
 				>
 					<div className="flex flex-col min-h-screen">
-						<div className="self-center flex-grow rounded ">
-							<img
-								className="mt-56 mb-24 rounded-2xl"
-								src="https://res.cloudinary.com/dcslof4ax/image/upload/v1688686104/rootseeker-gallery/bmnj0v4zdq0166vm6roj.jpg"
-							/>
+						<div className="flex self-center flex-grow rounded ">
+							<div className="flex items-center justify-evenly">
+								<img
+									className="w-1/2 rounded-2xl "
+									src="https://res.cloudinary.com/dcslof4ax/image/upload/v1688716197/rootseeker-gallery/lqvkwipshb9tyoacwxfj.jpg"
+								/>
+								<div className="items-center ">
+									<img
+										src="https://res.cloudinary.com/dcslof4ax/image/upload/v1688686997/rootseeker-gallery/hygql6wxlswbuauyysaj.png"
+										alt="rootseeker logo"
+									/>
+									<h1 className="text-5xl font-bold underline decoration-primary">
+										Rootseeker
+									</h1>
+								</div>
+							</div>
 						</div>
 						<FooterCard className="z-40 flex flex-col max-w-screen flex-end" />
 					</div>

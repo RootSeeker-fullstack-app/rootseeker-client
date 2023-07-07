@@ -245,7 +245,9 @@ function EditActivityPage() {
 											Uploading image...
 										</Button>
 									) : (
-										<Button onClick={handleAddImage}>Submit new photo</Button>
+										<Button color="primary" onClick={handleAddImage}>
+											Submit new photo
+										</Button>
 									)}
 								</div>
 							)}
