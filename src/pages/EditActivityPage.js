@@ -237,9 +237,6 @@ function EditActivityPage() {
                     Submit
                   </Button>
                 )}
-                <Button color="primary" onClick={notifyUpdate} className="mt-5">
-                  Submit
-                </Button>
                 <ToastContainer position="top-center" autoClose={2000} />
               </form>
 
