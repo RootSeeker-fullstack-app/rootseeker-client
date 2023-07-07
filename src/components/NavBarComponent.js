@@ -278,7 +278,7 @@ function NavBarComponent(props) {
 											/>
 										</svg>
 									</Indicator>
-									<span className="z-[1500]  badge" size="sm">
+									<span className="z-[1000]  badge" size="sm">
 										{reservations?.length}
 									</span>
 								</label>
