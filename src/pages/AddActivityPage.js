@@ -103,7 +103,7 @@ function AddActivityPage(props) {
 
 	return (
 		<div>
-			<div className="justify-center my-5 lg:flex">
+			<div className="justify-center min-h-screen my-5 lg:flex">
 				<div className="my-10 lg:flex basis-2/3">
 					<div className="mt-36 lg:mt-24 lg:mr-10 lg:ml-10 basis-1/2">
 						<LeafMap onCreated={handleCreated} />

@@ -18,9 +18,9 @@ export default function HomeCard() {
 				...springs,
 			}}
 		>
-			<div className="text-gray-800 card w-96">
+			<div className="text-gray-800  w-auto  lg:w-auto left-[-190px] lg:left-[120px] lg:bg-transparent">
 				<div className="items-center text-center card-body">
-					<h2 className="p-4 text-5xl text-left card-title">
+					<h2 className="text-4xl text-left lg:p-4 lg:text-5xl card-title">
 						With RootSeeker you can track activities all over the World
 					</h2>
 					<p>

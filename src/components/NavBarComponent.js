@@ -84,7 +84,7 @@ function NavBarComponent(props) {
 
 	return (
 		<div className="z-[1500] items-center justify-center w-full gap-2 p-4 pb-0 font-sans lg:items-center lg:justify-center lg:flex component-preview">
-			<Navbar className="z-[1500] shadow-xl navbar bg-base-100 rounded-box burger">
+			<Navbar className="z-[1500] shadow-xl navbar bg-base-100 rounded-box items-center burger">
 				<Navbar.Start className="dropdown">
 					<div className="text-left">
 						<Button tabIndex={0} className=" btn btn-ghost lg:hidden">
@@ -109,7 +109,10 @@ function NavBarComponent(props) {
 						className="menu menu-sm dropdown-content mt-3 z-[1500] p-2 shadow bg-base-100 text-left rounded-box w-52 lg:hidden"
 					>
 						<Link to={"/"}>
-							<h3>Logo</h3>
+							<img
+								src="https://res.cloudinary.com/dcslof4ax/image/upload/v1688686997/rootseeker-gallery/hygql6wxlswbuauyysaj.png"
+								alt="rootseeker logo"
+							/>
 							<h3>
 								<strong>RootSeeker</strong>
 							</h3>
@@ -128,13 +131,20 @@ function NavBarComponent(props) {
 							</Link>
 						)}
 					</ul>
-					<div className="hidden navbar-start lg:flex">
-						<Link to={"/"}>
-							<h3>Logo</h3>
-							<h3>
-								<strong>RootSeeker</strong>
-							</h3>
-						</Link>
+					<div className="hidden navbar-start lg:flex ">
+						<div>
+							<Link className="flex flex-row items-center mx-2" to={"/"}>
+								<img
+									className="w-10 h-10"
+									src="https://res.cloudinary.com/dcslof4ax/image/upload/v1688687634/rootseeker-gallery/pll9z8ui5busttl3a0iu.png"
+									alt="rootseeker logo"
+								/>
+
+								<h5 className="inline ml-2 text-xl font-bold underline decoration-primary">
+									RootSeeker
+								</h5>
+							</Link>
+						</div>
 						<Link to="/activities">
 							<Button color="primary" className="mx-2 btn-xs ">
 								Activities

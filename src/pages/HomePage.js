@@ -6,18 +6,20 @@ import StickyCard from "../components/StickyCard";
 import ChooseCard from "../components/HostCard";
 import FooterCard from "../components/FooterCard";
 import HostCard from "../components/ChooseCard";
+import StickySmall from "../components/StickySmall";
+import ChooseSmall from "../components/ChooseSmall";
 
 export default function HomePage() {
 	const alignCenter = { display: "flex", alignItems: "center" };
 	const url =
 		"https://images.pexels.com/photos/17201962/pexels-photo-17201962/free-photo-of-landscape-sunset-field-summer.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1";
 	return (
-		<div className="flex justify-center">
-			<div className="z-40 justify-center hidden w-1/4 lg:block">
+		<div className="flex justify-center lg:flex">
+			<div className="z-40 justify-center hidden w-full lg:w-1/4 lg:block">
 				<SearchBarComp />
 			</div>
 
-			<Parallax pages={5}>
+			<Parallax pages={5} className="hidden lg:block ">
 				<ParallaxLayer
 					className="z-30"
 					offset={0}
@@ -82,12 +84,22 @@ export default function HomePage() {
 					}}
 				>
 					<div className="flex flex-col min-h-screen">
-						<div className="flex-grow"></div>
-
-						<FooterCard className="flex flex-col max-w-screen flex-end" />
+						<div className="self-center flex-grow rounded ">
+							<img
+								className="mt-56 mb-24 rounded-2xl"
+								src="https://res.cloudinary.com/dcslof4ax/image/upload/v1688686104/rootseeker-gallery/bmnj0v4zdq0166vm6roj.jpg"
+							/>
+						</div>
+						<FooterCard className="z-40 flex flex-col max-w-screen flex-end" />
 					</div>
 				</ParallaxLayer>
 			</Parallax>
+			<div className="flex flex-col lg:hidden">
+				<WelcomeCard />
+				<StickySmall />
+				<ChooseSmall />
+				<FooterCard />
+			</div>
 		</div>
 	);
 }
