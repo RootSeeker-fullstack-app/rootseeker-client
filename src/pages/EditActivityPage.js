@@ -219,7 +219,24 @@ function EditActivityPage() {
 									type="file"
 									onChange={handleFileUpload}
 								/>
-
+								{isUploadingImage ? (
+									<Button
+										color="primary"
+										onClick={notifyUpdate}
+										className="mt-5"
+										disabled
+									>
+										Uploading image...
+									</Button>
+								) : (
+									<Button
+										color="primary"
+										onClick={notifyUpdate}
+										className="mt-5"
+									>
+										Submit
+									</Button>
+								)}
 								<Button color="primary" onClick={notifyUpdate} className="mt-5">
 									Submit
 								</Button>
@@ -253,7 +270,7 @@ function EditActivityPage() {
 							)}
 						</div>
 						<div className="mx-4 my-24 basis-1/2">
-							<img src={inputs.images[0]} />
+							<img src={inputs.images[0]} alt="activityimage" />
 						</div>
 					</div>
 					<div className="basis-1/4"></div>
