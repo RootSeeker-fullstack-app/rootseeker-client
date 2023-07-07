@@ -28,7 +28,6 @@ function EditProfile({ toggleIsEditVisible }) {
     axios
       .post(`${API_URL}/api/upload`, uploadData)
       .then((response) => {
-        console.log(response.data);
         setImageUrl(response.data.fileUrl);
       })
       .catch((err) => console.log("Error while uploading the file: ", err))
@@ -60,7 +59,6 @@ function EditProfile({ toggleIsEditVisible }) {
         })
         .then((response) => {
           storeToken(response.data.authToken);
-          console.log(response.data);
           authenticateUser();
           setToggle(!toggle);
         })
