@@ -8,12 +8,8 @@ function ActivityCard(props) {
 	return (
 		<>
 			<Card className="my-2 shadow-xl ActivityCard card lg:card-side bg-base-100">
-				<div className="w-56">
-					<img
-						className="object-cover object-center h-full w-72"
-						src={props.images[0]}
-						alt="image"
-					/>
+				<div className="lg:w-80">
+					<img className="w-full h-72" src={props.images[0]} alt="image" />
 				</div>
 
 				<Card.Body className="text-left card-body">
