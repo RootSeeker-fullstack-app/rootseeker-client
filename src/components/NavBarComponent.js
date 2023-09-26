@@ -124,7 +124,7 @@ function NavBarComponent(props) {
 							</Link>
 						)}
 					</ul>
-					<div className="items-center hidden navbar-start lg:flex ">
+					<div className="hidden navbar-start lg:flex ">
 						<div>
 							<Link className="flex flex-row items-center mx-2" to={"/"}>
 								<img
