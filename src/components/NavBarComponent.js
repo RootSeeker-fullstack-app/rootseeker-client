@@ -111,8 +111,8 @@ function NavBarComponent(props) {
 							</h3>
 						</Link>
 						<Link to="/activities">
-							<Button color="primary" className="mx-2 my-4 btn-xs ">
-								Activities
+							<Button color="primary" className="mx-2 my-4 btn-xs">
+								<p>Activities</p>
 							</Button>
 						</Link>
 
@@ -124,7 +124,7 @@ function NavBarComponent(props) {
 							</Link>
 						)}
 					</ul>
-					<div className="hidden navbar-start lg:flex ">
+					<div className="items-center hidden navbar-start lg:flex ">
 						<div>
 							<Link className="flex flex-row items-center mx-2" to={"/"}>
 								<img
