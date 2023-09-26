@@ -110,7 +110,7 @@ function ActivityDetailsPage() {
                     >
                       <img
                         src={image}
-                        className="object-cover w-auto h-full"
+                        className="w-full h-[420px]"
                         alt={`Slide ${index}`}
                       />
                       <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">

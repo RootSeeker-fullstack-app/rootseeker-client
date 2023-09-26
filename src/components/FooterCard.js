@@ -31,14 +31,14 @@ export default function FooterCard() {
       </div>
       <div>
         <Footer.Title>About us</Footer.Title>
-        <a href="https://github.com/fndoRamos" className="link link-hover">
+        <a href="https://www.linkedin.com/in/fernando-ramos-webdev/" className="link link-hover" target="_blank" rel="noreferrer">
           Fernando Ramos
         </a>
-        <a href="https://github.com/fndoRamos" className="link link-hover">
+        <a href="https://www.linkedin.com/in/fernando-ramos-webdev/" className="link link-hover" target="_blank" rel="noreferrer">
           <ion-icon name="logo-linkedin"></ion-icon>
-          github.com/fndoRamos
+          https://www.linkedin.com/in/fernando-ramos-webdev/
         </a>
-        <a href="https://github.com/fndoRamos" className="link link-hover">
+        <a href="https://github.com/fndoRamos" className="link link-hover" target="_blank" rel="noreferrer">
           <ion-icon name="logo-github"></ion-icon>
           github.com/fndoRamos
         </a>
@@ -47,6 +47,7 @@ export default function FooterCard() {
         <a
           href="https://www.linkedin.com/in/gregory-tildis-junior-react/"
           className="link link-hover"
+          target="_blank" rel="noreferrer"
         >
           Greg Tildis
         </a>
@@ -54,11 +55,12 @@ export default function FooterCard() {
         <a
           href="https://www.linkedin.com/in/gregory-tildis-junior-react/"
           className="link link-hover"
+          target="_blank" rel="noreferrer"
         >
           <ion-icon name="logo-linkedin"></ion-icon>
           https://www.linkedin.com/in/gregory-tildis-junior-react/
         </a>
-        <a href="https://github.com/gtildis" className="link link-hover">
+        <a href="https://github.com/gtildis" className="link link-hover" target="_blank" rel="noreferrer">
           <ion-icon name="logo-github"></ion-icon>
           github.com/gtildis
         </a>
