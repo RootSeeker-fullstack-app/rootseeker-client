@@ -10,7 +10,7 @@ function ActivityCard(props) {
       <Card className="my-2 shadow-xl ActivityCard card lg:card-side bg-base-100">
         <div className="lg:w-80">
           <img
-            className="w-full h-72"
+            className="w-full h-[330px]"
             src={props.images[0]}
             alt="image"
           />
@@ -22,7 +22,10 @@ function ActivityCard(props) {
 							{props.name}
 						</Card.Title>
 					</Link>
+          <div className="w-96">
 					<p>Description: {props.description} </p>
+
+          </div>
 					<br />
 					<div className="gap-2 lg:grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-2">
 						<p>⌚: {props.duration}min </p>
