@@ -10,7 +10,7 @@ function ActivityCard(props) {
 			<Card className="my-2 shadow-xl ActivityCard card lg:card-side bg-base-100">
 				<div className="lg:w-80">
 					<img
-						className="w-full h-48 lg:h-full"
+						className="object-none object-center w-48 h-48 lg:h-full"
 						src={props.images[0]}
 						alt="image"
 					/>
